@@ -110,8 +110,9 @@ server 部署代码
  如果喜欢此项目，请点个 Star。
  QQ: `1504335501` 🧒 👧 👱  🧔 👴
 
-## 管理后台部分截图
+## 部分截图
+![前台展示](https://gitee.com/yulinzhu/pic-window/raw/master/img/1718958475210.jpg)
 
-![后台展示](![](https://gitee.com/yulinzhu/pic-window/raw/master/img/1718958475210.jpg))
+![后台展示](https://gitee.com/yanyutao0402/chanyue-cms/raw/master/server/app/public/template/default/img/info.png)
 
 ![后台展示](https://gitee.com/yanyutao0402/chanyue-cms/raw/master/server/app/public/template/default/img/article.png)
