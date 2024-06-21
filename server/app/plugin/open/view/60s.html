@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%=name%>
+    </title>
+</head>
+
+<body>
+    <main>
+        <div>
+            <h1>
+                <%=name%>
+            </h1>
+            <time>
+                <%=time%>
+            </time>
+            <article>
+                {{each data}}
+                <p>
+                    {{$value}}
+                </p>
+                {{/each}}
+            </article>
+        </div>
+    </main>
+</body>
+
+</html>

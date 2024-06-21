@@ -1,0 +1,49 @@
+{
+  "name": "mohe",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --mode dev",
+    "build": "vite build",
+    "build:prd": "vite build  --mode prd",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "@jsdawn/vue3-tinymce": "^2.0.4",
+    "@qiun/vue-ucharts": "^2.5.0-20230101",
+    "axios": "^1.6.0",
+    "element-plus": "^2.6.0",
+    "js-cookie": "^3.0.5",
+    "json-editor-vue3": "^1.1.1",
+    "md-editor-v3": "^4.16.7",
+    "pinia": "^2.1.7",
+    "pinia-plugin-persist": "^1.0.0",
+    "pinyin-pro": "^3.17.0",
+    "saduocss": "^1.1.1",
+    "terser": "^5.31.1",
+    "vite-plugin-vue-setup-extend": "^0.4.0",
+    "vue": "^3.3.7",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@originjs/vite-plugin-commonjs": "^1.0.3",
+    "@rushstack/eslint-patch": "^1.5.1",
+    "@vitejs/plugin-legacy": "^4.1.1",
+    "@vitejs/plugin-vue": "^4.4.0",
+    "@vue/devtools-api": "^6.5.1",
+    "@vue/eslint-config-prettier": "^8.0.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.45.0",
+    "eslint-plugin-vue": "^9.18.0",
+    "less": "^4.2.0",
+    "postcss-pxtorem": "^6.0.0",
+    "prettier": "^3.0.3",
+    "rollup-plugin-copy": "^3.5.0",
+    "unplugin-auto-import": "^0.16.7",
+    "unplugin-icons": "^0.17.1",
+    "unplugin-vue-components": "^0.25.2",
+    "vite": "^4.5.0"
+  }
+}

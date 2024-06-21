@@ -1,0 +1,1 @@
+System.register(["./index-legacy.js"],(function(e,t){"use strict";var i,o;return{setters:[e=>{i=e.h,o=e.A}],execute:function(){e("l",(e=>i({url:`${o.BASE_API}/api/loginLog/list?cur=${e}&pageSize=20`,method:"get"}))),e("c",(()=>i({url:`${o.BASE_API}/api/loginLog/create`,method:"post"}))),e("d",(e=>i({url:`${o.BASE_API}/api/loginLog/delete?id=${e}`,method:"get"})))}}}));

@@ -1,0 +1,1 @@
+import{h as o,A as t}from"./index.js";let a=a=>o({url:"".concat(t.BASE_API,"/api/loginLog/list?cur=").concat(a,"&pageSize=20"),method:"get"}),e=()=>o({url:"".concat(t.BASE_API,"/api/loginLog/create"),method:"post"}),c=a=>o({url:"".concat(t.BASE_API,"/api/loginLog/delete?id=").concat(a),method:"get"});export{e as c,c as d,a as l};

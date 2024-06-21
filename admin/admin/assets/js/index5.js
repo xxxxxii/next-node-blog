@@ -1,0 +1,1 @@
+import{_ as a}from"./@qiun.js";import{o,c as r,a as s}from"./@vue.js";const n={},t=[s("h1",null,"Dashboard page",-1)];const e=a(n,[["render",function(a,s){return o(),r("div",null,t)}]]);export{e as default};
