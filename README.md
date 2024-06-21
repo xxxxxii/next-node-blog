@@ -112,6 +112,6 @@ server 部署代码
 
 ## 管理后台部分截图
 
-![后台展示](https://gitee.com/yanyutao0402/chanyue-cms/raw/master/server/app/public/template/default/img/info.png)
+![后台展示](![](https://gitee.com/yulinzhu/pic-window/raw/master/img/1718958475210.jpg))
 
 ![后台展示](https://gitee.com/yanyutao0402/chanyue-cms/raw/master/server/app/public/template/default/img/article.png)
