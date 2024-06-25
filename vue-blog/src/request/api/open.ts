@@ -13,7 +13,8 @@ const api = {
     ArticleDetail: '/api/article/detail',
     TagList2: '/api/tag/list',
     //  '/api/getArticleListByCid',
-    ArticleByTid: '/api/getArticleListByTid'
+    ArticleByTid: '/api/getArticleListByTid',
+    PvAdd: '/api/pvadd'
 };
 
 // 首页
@@ -69,4 +70,9 @@ export const tagList = (params: any) => {
 // 标签列表
 export const articleByTid = (params: any) => {
     return service.post(api.ArticleByTid, params);
+};
+
+// 文章阅读+1
+export const pvAdd = (params: any) => {
+    return service.get(api.PvAdd + '?' + qs.stringify(params));
 };

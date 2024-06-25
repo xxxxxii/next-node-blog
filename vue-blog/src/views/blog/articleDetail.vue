@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { articleDetail, tagList } from '@/request/api/open';
+import { articleDetail, tagList, pvAdd } from '@/request/api/open';
 import { onBeforeMount, ref, reactive } from 'vue';
 import dayjs from 'dayjs';
 import { MdEditor, MdPreview, MdCatalog } from 'md-editor-v3';
@@ -96,6 +96,9 @@ async function articleDetailApi() {
             ],
         });
         tagListApi();
+
+        // 阅读量+1
+        pvAdd({ id: id });
     }
 }
 
