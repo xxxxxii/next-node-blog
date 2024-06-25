@@ -1,7 +1,7 @@
 const dayjs = require("dayjs");
 const Chan = require("chanjs");
 const {
-  utils: { success, tree },
+  utils: { success, tree, pages },
 } = Chan.helper;
 
 const {
@@ -196,6 +196,37 @@ class ChancmsController {
     }
   }
 
+  // tag serach
+  static async tagSearch(req, res, next) {
+    try {
+      const {
+        config: { template },
+      } = req.app.locals;
+
+      const { path, id, cur, pageSize } = req.body;
+      // 文章列表
+      const data = await chancms.tags(path, cur || 1, pageSize || 10);
+      //分页
+      let { count } = data;
+      let href = "/tag/" + path;
+      let pageHtml = pages(cur, count, pageSize, href);
+      data.list.forEach((ele) => {
+        ele.updatedAt = dayjs(ele.updatedAt).format("YYYY-MM-DD HH:mm:ss");
+      });
+
+      return res.json({
+        code: 200,
+        data,
+        path,
+        pageHtml,
+      });
+      await res.render(`${template}/tag.html`, { data, path, pageHtml });
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  }
+
   //tag列表
   static async tagList(req, res, next) {
     try {
@@ -281,7 +312,6 @@ class ChancmsController {
       next(error);
     }
   }
-
 }
 
 module.exports = ChancmsController;

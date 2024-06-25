@@ -19,5 +19,5 @@ import { RouterView } from 'vue-router';
 import { useMainStore } from '@/stores/useMainStore';
 const mainStore = useMainStore();
 </script>
-<style scoped lang="scss"></style>
+<style></style>
 @/stores/useMainStore

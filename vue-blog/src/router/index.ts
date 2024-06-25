@@ -35,6 +35,31 @@ const router = createRouter({
             ],
         },
         {
+            path: '/',
+            name: 'test',
+            meta: {
+                visible: true,
+                title: 'test',
+                icon: 'mdi-home-minus-outline',
+                isOne: true, // 一级菜单
+            },
+            // redirect: '/home',
+            component: Layout,
+            children: [
+                {
+                    path: '/',
+                    name: 'test',
+                    meta: {
+                        title: 'yulinZ blogs',
+                        icon: 'mdi-alpha-t',
+                        keepAlive: true,
+                        visible: false,
+                    },
+                    component: () => import('@/views/test/index.vue'),
+                },
+            ],
+        },
+        {
             path: '/blog',
             name: 'blog',
             meta: {
@@ -279,6 +304,24 @@ const router = createRouter({
                         visible: false,
                     },
                     component: () => import('@/views/blog/articleDetail.vue'),
+                    children: [],
+                },
+            ],
+        },
+        {
+            path: '/tags/:name',
+            name: 'tags',
+            meta: { keepAlive: false, title: '标签分类', icon: 'mdi-paw-off', visible: false },
+            component: Layout,
+            children: [
+                {
+                    path: '',
+                    name: 'tags',
+                    meta: {
+                        title: '标签',
+                        visible: false,
+                    },
+                    component: () => import('@/views/blog/tags.vue'),
                     children: [],
                 },
             ],

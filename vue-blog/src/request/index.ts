@@ -45,6 +45,7 @@ service.interceptors.response.use(
         // } else {
         //   return res;
         // }
+        console.log(response, 'response')
         if (status === 200) {
             return data;
         } else {

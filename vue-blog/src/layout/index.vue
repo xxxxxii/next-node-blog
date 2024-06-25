@@ -24,7 +24,7 @@
             <v-main style="overflow-y: auto; overflow-x: hidden; height: 100%; width: 100%">
                 <!-- <v-container style="width: 100%"> -->
                 <div class="main">
-                    <RouterView style="min-height: calc(100% - 210px)" />
+                    <RouterView style="min-height: calc(100vh - 210px)" />
                 </div>
                 <!-- </v-container> -->
                 <Footer />
@@ -56,7 +56,7 @@ watch(device, (val) => {
     }
 });
 </script>
-<style scoped>
+<style scoped lang="scss">
 ::v-deep(.v-row) {
     margin: 0;
 }

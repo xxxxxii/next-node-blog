@@ -13,6 +13,7 @@ const api = {
     ArticleDetail: '/api/article/detail',
     TagList2: '/api/tag/list',
     //  '/api/getArticleListByCid',
+    ArticleByTid: '/api/getArticleListByTid'
 };
 
 // 首页
@@ -63,4 +64,9 @@ export const articleDetail = (params: any) => {
 // 标签列表
 export const tagList = (params: any) => {
     return service.get(api.TagList2 + '?' + qs.stringify(params));
+};
+
+// 标签列表
+export const articleByTid = (params: any) => {
+    return service.post(api.ArticleByTid, params);
 };

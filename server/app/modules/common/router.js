@@ -14,8 +14,9 @@ module.exports = (opt) => {
   router.get("/category", controller.chancms.category);
   router.get("/getArticleList", controller.chancms.getArticleList);
   router.get("/getArticleListByCid", controller.chancms.getArticleListByCid);
+  router.post("/getArticleListByTid", controller.chancms.tagSearch);
   router.get("/getArticleTag", controller.chancms.getArticleTag);
-  router.get(["/list","/page"], controller.chancms.list);
+  router.get(["/list", "/page"], controller.chancms.list);
   router.get("/article", controller.chancms.article);
   router.get("/banner", controller.chancms.banner);
   router.get("/pv", controller.chancms.pv);

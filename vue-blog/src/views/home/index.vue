@@ -119,21 +119,7 @@
                 </div> -->
             </v-card>
             <!--  tag -->
-            <v-card style="padding: 8px; margin-top: 12px">
-                <div style="font-size: 0.9rem; font-weight: 600">🏷️ 标签</div>
-
-                <div>
-                    <v-chip
-                        style="margin: 4px; cursor: pointer"
-                        v-for="item in tagsList"
-                        :key="item?.id"
-                        color="primary"
-                        size="small"
-                    >
-                        {{ item?.name }}
-                    </v-chip>
-                </div>
-            </v-card>
+            <Tags />
             <!--  友链 -->
             <v-card style="padding: 8px; margin-top: 12px">
                 <div style="font-size: 0.9rem; font-weight: 600">
@@ -165,8 +151,10 @@
 import { ref, onBeforeMount } from 'vue';
 import { home, tags, frag, friendlink } from '@/request/api/open';
 import NoData from '@/components/NoData/index.vue';
+import Tags from '@/views/comp/tags.vue';
 import { useArticle } from '@/utils/article';
-const { articleDetail } = useArticle();
+import '../../styles/public.css';
+const { articleDetail, tagDetail } = useArticle();
 // import { useHead } from '@unhead/vue';
 
 const homeData: any = ref(null);
@@ -219,14 +207,14 @@ onBeforeMount(() => {
 ::v-deep(.v-timeline-item__body) {
     padding: 8px !important;
 }
-.item-l,
+/* .item-l,
 .item-r {
     padding: 6px 0;
-}
+} */
 .right-box {
     padding: 0 12px 0 12px;
 }
-@media (min-width: 600px) {
+/* @media (min-width: 600px) {
     .item-l {
         padding: 0 6px 12px 0;
     }
@@ -236,7 +224,7 @@ onBeforeMount(() => {
     .right-box {
         padding-top: 12px;
     }
-}
+} */
 ::v-deep(.mt-10) {
     margin-top: 10px !important;
 }

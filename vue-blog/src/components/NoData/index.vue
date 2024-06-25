@@ -1,6 +1,6 @@
 <template>
     <div class="no-data" v-bind="$attrs">
-        <v-card style="text-align: center">
+        <v-card style="text-align: center; padding: 15px">
             <p>灯火阑珊处，</p>
             <p>文章一点无！</p>
         </v-card>

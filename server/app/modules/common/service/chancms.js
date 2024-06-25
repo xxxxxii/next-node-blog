@@ -133,6 +133,72 @@ class ChancmsService {
   }
 
   /**
+   * @description tag搜索
+   * @param {Number} tag tagpath
+   * @param {Number|String} current 当前页面
+   * @param {Number} pageSize 默认10条
+   * @returns {Array}
+   */
+  static async tags(name, current = 1, pageSize = 10) {
+    try {
+      const start = (current - 1) * pageSize;
+
+      // 查询个数
+      const [total] = await knex("article as a")
+        .join("category as c", "a.cid", "c.id")
+        .whereExists(function () {
+          this.select(1)
+            .from("tag as t")
+            .whereRaw("FIND_IN_SET(t.id, a.tag_id) > 0")
+            .andWhere("t.name", name);
+        })
+        .count("* as total");
+      console.log(current, pageSize, total, "222");
+      // 查询文章列表
+      const result = await knex("article as a")
+        .select(
+          "a.id",
+          "a.title",
+          "a.short_title",
+          "a.img",
+          "a.description",
+          "a.createdAt",
+          "a.author",
+          "a.pv",
+          "c.pinyin",
+          "c.name",
+          "c.path"
+        )
+        .join("category as c", "a.cid", "c.id")
+        .whereExists(function () {
+          this.select(1)
+            .from("tag as t")
+            .whereRaw("FIND_IN_SET(t.id, a.tag_id) > 0")
+            .andWhere("t.name", name);
+        })
+        .where("a.status", 0)
+        .orderBy("a.createdAt", "DESC")
+        .offset(start)
+        .limit(pageSize);
+
+      const count = total.total || 1;
+
+      return {
+        count,
+        total: Math.ceil(count / pageSize),
+        current: +current,
+        list: result,
+      };
+    } catch (err) {
+      console.error(
+        `id->${path} current->${current} pageSize->${pageSize}`,
+        err
+      );
+      return err;
+    }
+  }
+
+  /**
    * @description 通过文章id查找对应的tag标签
    * @param {Number} aid 文章id
    * @returns {Array} 返回数组

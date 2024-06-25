@@ -109,9 +109,9 @@ class ArticleController {
   // 列表
   static async list(req, res, next) {
     try {
-      const cur = req.query.cur;
+      const cur = req.query.cur || 1;
       const cid = req.query.cid;
-      const pageSize = 10;
+      const pageSize = req.query.pageSize || 10;
       const data = await article.list(cur, pageSize, cid);
       data.list.forEach((ele) => {
         ele.updatedAt = dayjs(ele.updatedAt).format("YYYY-MM-DD HH:mm:ss");

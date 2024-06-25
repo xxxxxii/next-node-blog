@@ -1,7 +1,9 @@
 .DS_Store
 node_modules
 /dist
-
+/vue-blog/blog
+/admin/admin
+vue-blog/blog/index.html.gz
 
 # local env files
 .env.local
@@ -23,6 +25,7 @@ pnpm-debug.log*
 *.sw?
 package-lock.json
 *.zip
+*.gz
 /server/app/model
 /server/app/controller/user
 /server/app/controller/web/lianmeng
@@ -47,3 +50,4 @@ package-lock.json
 /server/app/modules/home/view/ribao
 /server/app/public/template/ribao
 /server/app/public/document
+
