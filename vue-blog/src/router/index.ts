@@ -35,10 +35,10 @@ const router = createRouter({
             ],
         },
         {
-            path: '/',
+            path: '/test',
             name: 'test',
             meta: {
-                visible: true,
+                visible: false,
                 title: 'test',
                 icon: 'mdi-home-minus-outline',
                 isOne: true, // 一级菜单
@@ -47,7 +47,7 @@ const router = createRouter({
             component: Layout,
             children: [
                 {
-                    path: '/',
+                    path: '/test',
                     name: 'test',
                     meta: {
                         title: 'yulinZ blogs',

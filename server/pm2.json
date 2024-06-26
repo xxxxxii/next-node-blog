@@ -1,7 +1,7 @@
 ﻿{
     "apps": [
         {
-            "name": "ChanCMS",
+            "name": "yulinZ blog",
             "script": "app.js",
             "watch": [
                 "app"

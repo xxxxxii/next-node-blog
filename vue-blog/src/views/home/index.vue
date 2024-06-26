@@ -47,8 +47,10 @@
                             :key="item.id"
                         >
                             <div class="d-flex" style="justify-content: space-between">
-                                <div class="title">{{ item?.title }}</div>
-                                <div class="date">{{ item?.createdAt }}</div>
+                                <div class="title t-els" style="flex: 1">{{ item?.title }}</div>
+                                <div class="date" style="width: 50px; flex: none">
+                                    {{ item?.createdAt }}
+                                </div>
                             </div>
                         </v-card>
                     </v-card>
@@ -238,5 +240,10 @@ onBeforeMount(() => {
     padding: 10px;
     background: rgba(0, 0, 0, 0.35);
     color: #fff;
+}
+.t-els {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 </style>

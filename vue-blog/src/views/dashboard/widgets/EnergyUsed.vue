@@ -1,7 +1,6 @@
 <template>
     <v-card class="energy_used" title="Energy Used">
         <ECharts :height="`calc(${props?.height} - 52px)`" :full-options="options" />
-        <!-- <VueApexCharts :height="'100%'" type="area" :options="chartOptions" :series="series" /> -->
     </v-card>
 </template>
 <script setup lang="ts">
@@ -19,48 +18,7 @@ const props = withDefaults(
         height: 308,
     }
 );
-const mainStore = useMainStore();
-const chartOptions = computed(() => {
-    return {
-        chart: {
-            id: 'vuechart-example',
-            height: 310,
-            // sparkline: {
-            //     enabled: true,
-            // },
-            type: 'area',
-            toolbar: {
-                show: false,
-            },
-        },
-        grid: {
-            borderColor: '#efefef',
-        },
-        theme: {
-            mode: mainStore.theme, // light
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        stroke: {
-            curve: 'smooth',
-        },
-        xaxis: {
-            type: 'string',
-            categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        },
-        tooltip: {
-            x: {
-                // format: 'dd/MM/yy HH:mm',
-                show: false,
-            },
-            marker: {
-                show: false,
-            },
-        },
-        colors: [mainStore.settings.primary],
-    };
-});
+
 const series = ref([
     {
         name: 'Kwh',
