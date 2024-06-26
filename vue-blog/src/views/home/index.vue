@@ -68,6 +68,11 @@
                     }"
                 >
                     <v-card :title="item?.category?.name" style="height: 100%">
+                        <template #title>
+                            <span @click="categoryDetail(item)" style="cursor: pointer">{{
+                                item?.category?.name
+                            }}</span>
+                        </template>
                         <template v-if="item?.list?.length > 0">
                             <div style="margin: 8px 15px" v-for="ic in item?.list" :key="ic?.id">
                                 <v-card style="padding: 6px" @click="articleDetail(ic)">
@@ -156,7 +161,7 @@ import NoData from '@/components/NoData/index.vue';
 import Tags from '@/views/comp/tags.vue';
 import { useArticle } from '@/utils/article';
 import '../../styles/public.css';
-const { articleDetail, tagDetail } = useArticle();
+const { articleDetail, tagDetail, categoryDetail } = useArticle();
 // import { useHead } from '@unhead/vue';
 
 const homeData: any = ref(null);

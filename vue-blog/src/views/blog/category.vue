@@ -38,7 +38,7 @@
             </v-card>
         </v-col>
         <v-col cols="12" sm="2" class="item-l">
-            <tags self @reload="reload" />
+            <category self @reload="reload" />
         </v-col>
     </v-row>
 </template>
@@ -46,17 +46,17 @@
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
-import tags from '../comp/tags.vue';
-import { articleByTid } from '@/request/api/open';
+import category from '../comp/category.vue';
+import { articleByCid } from '@/request/api/open';
 import NoData from '@/components/NoData/index.vue';
 import '../../styles/public.css';
 import dayjs from 'dayjs';
 import { useArticle } from '@/utils/article';
-const { articleDetail, tagDetail } = useArticle();
+const { articleDetail, categoryDetail } = useArticle();
 const route = useRoute();
-// const tagName = route.query?.tagName;
+const tagId = route.params?.id;
 const tagName = route.query?.name;
-const breadcrumbs: any = ref(['首页', 'tag标签', tagName]);
+const breadcrumbs: any = ref(['首页', '分类', tagName]);
 
 const page = ref({
     cur: 1,
@@ -74,7 +74,7 @@ function pageChange(cPage: any) {
 
 const arcList = ref([]);
 async function articleByTidApi(params: any) {
-    let { code, data } = await articleByTid(params);
+    let { code, data } = await articleByCid(params);
     if (code === 200) {
         arcList.value = data?.list;
         page.value.count = data?.total;

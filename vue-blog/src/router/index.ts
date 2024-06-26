@@ -326,6 +326,24 @@ const router = createRouter({
                 },
             ],
         },
+        {
+            path: '/category/:id',
+            name: 'category',
+            meta: { keepAlive: false, title: '文章分类', icon: 'mdi-paw-off', visible: false },
+            component: Layout,
+            children: [
+                {
+                    path: '',
+                    name: 'category',
+                    meta: {
+                        title: '文章分类',
+                        visible: false,
+                    },
+                    component: () => import('@/views/blog/category.vue'),
+                    children: [],
+                },
+            ],
+        },
     ],
 });
 

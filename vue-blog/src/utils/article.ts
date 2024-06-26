@@ -12,5 +12,13 @@ export function useArticle() {
             provide('reloadPage', true)
         }
     }
-    return { articleDetail, tagDetail };
+    function categoryDetail(obj: any) {
+        console.log(obj);
+
+        router.push({
+            path: '/category/' + obj?.category?.id, query: obj?.category
+        });
+    }
+
+    return { articleDetail, tagDetail, categoryDetail };
 }

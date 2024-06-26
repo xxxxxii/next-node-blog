@@ -12,9 +12,10 @@ const api = {
     Site: '/api/site',
     ArticleDetail: '/api/article/detail',
     TagList2: '/api/tag/list',
-    //  '/api/getArticleListByCid',
+    ArticleByCid: '/api/list',
     ArticleByTid: '/api/getArticleListByTid',
-    PvAdd: '/api/pvadd'
+    PvAdd: '/api/pvadd',
+    Category: '/api/category'
 };
 
 // 首页
@@ -75,4 +76,14 @@ export const articleByTid = (params: any) => {
 // 文章阅读+1
 export const pvAdd = (params: any) => {
     return service.get(api.PvAdd + '?' + qs.stringify(params));
+};
+
+// 通过分类id 获取文章
+export const articleByCid = (params: any) => {
+    return service.get(api.ArticleByCid + '?' + qs.stringify(params));
+};
+
+// 获取文章分类
+export const category = (params: any) => {
+    return service.get(api.Category + '?' + qs.stringify(params));
 };
