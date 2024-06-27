@@ -1,5 +1,14 @@
 <template>
-    <v-card>
+    <v-card v-if="!article">
+        <v-skeleton-loader
+            class="mx-auto"
+            elevation="2"
+            height="800"
+            type="card-avatar, article, actions"
+            boilerplate
+        ></v-skeleton-loader>
+    </v-card>
+    <v-card v-else>
         <v-row>
             <v-col cols="12" :sm="10">
                 <article class="article-box">

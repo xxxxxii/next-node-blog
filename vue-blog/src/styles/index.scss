@@ -2,6 +2,9 @@
 //   $utilities: false,
 //   $color-pack: false,
 // );
+.main{
+    min-height: 100vh !important;
+}
 @import "./var.scss";
 @import "./reset.scss";
 @import "./common.scss";

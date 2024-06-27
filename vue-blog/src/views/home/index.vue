@@ -1,5 +1,15 @@
 <template>
-    <v-row class="flex main">
+    <v-row class="flex main" v-if="!homeData">
+        <v-skeleton-loader
+            class="mx-auto"
+            elevation="2"
+            height="800"
+            width="100%"
+            type="card-avatar, article, actions"
+            boilerplate
+        ></v-skeleton-loader>
+    </v-row>
+    <v-row class="flex main" v-else>
         <v-col cols="12" :sm="10">
             <v-row>
                 <v-col cols="12" :sm="6" class="item-l">
