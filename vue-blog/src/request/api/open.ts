@@ -15,7 +15,9 @@ const api = {
     ArticleByCid: '/api/list',
     ArticleByTid: '/api/getArticleListByTid',
     PvAdd: '/api/pvadd',
-    Category: '/api/category'
+    Category: '/api/category',
+    Prev: '/api/prev',
+    Next: '/api/next'
 };
 
 // 首页
@@ -86,4 +88,14 @@ export const articleByCid = (params: any) => {
 // 获取文章分类
 export const category = (params: any) => {
     return service.get(api.Category + '?' + qs.stringify(params));
+};
+
+// 上篇文章
+export const prev = (params: any) => {
+    return service.get(api.Prev + '?' + qs.stringify(params));
+};
+
+// 下篇文章
+export const next = (params: any) => {
+    return service.get(api.Next + '?' + qs.stringify(params));
 };

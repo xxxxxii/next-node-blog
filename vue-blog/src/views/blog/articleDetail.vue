@@ -37,6 +37,21 @@
                         <MdPreview :editorId="state.id" v-model="content" :theme="getTheme()" />
                     </div>
                 </article>
+
+                <div class="article-footer">
+                    <div>
+                        <div class="prev">
+                            <v-card @click="prevData?.id && articleDetail(prevData)">
+                                {{ prevData?.title || '没有了' }}
+                            </v-card>
+                        </div>
+                        <div class="next">
+                            <v-card @click="nextData?.id && articleDetail(nextData)">
+                                {{ nextData?.title || '没有了' }}
+                            </v-card>
+                        </div>
+                    </div>
+                </div>
             </v-col>
             <v-col cols="12" sm="2">
                 <v-card style="position: fixed; width: 200px; right: 30px">
@@ -55,14 +70,17 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { articleDetail, tagList, pvAdd } from '@/request/api/open';
+import { articleDetail as artDetail, tagList, pvAdd, next, prev } from '@/request/api/open';
 import { onBeforeMount, ref, reactive } from 'vue';
 import dayjs from 'dayjs';
 import { MdEditor, MdPreview, MdCatalog } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 import { useHead } from '@unhead/vue';
-
+import { useArticle } from '@/utils/article';
 import { useMainStore } from '@/stores/useMainStore';
+
+const { articleDetail } = useArticle();
+
 const state = reactive({
     id: 'my-editor',
 });
@@ -77,7 +95,7 @@ const id = route.params?.id;
 const article: any = ref(null);
 const content = ref('');
 async function articleDetailApi() {
-    const { code, data } = await articleDetail({ id: id });
+    const { code, data } = await artDetail({ id: id });
     if (code === 200) {
         article.value = data;
         content.value = data?.content;
@@ -97,8 +115,26 @@ async function articleDetailApi() {
         });
         tagListApi();
 
+        prevApi(data?.id, data?.cid);
+        nextApi(data?.id, data?.cid);
         // 阅读量+1
         pvAdd({ id: id });
+    }
+}
+
+const prevData = ref({});
+async function prevApi(id: number, cid: number) {
+    const { code, data } = await prev({ id, cid });
+
+    if (code === 200 && data?.length > 0) {
+        prevData.value = data[0];
+    }
+}
+const nextData = ref({});
+async function nextApi(id: number, cid: number) {
+    const { code, data } = await next({ id, cid });
+    if (code === 200 && data?.length >= 0) {
+        nextData.value = data[0];
     }
 }
 
@@ -153,5 +189,20 @@ onBeforeMount(() => {
 }
 ::v-deep(.md-editor-catalog-link span:hover) {
     color: #4ba8fe !important;
+}
+.article-footer {
+    > div {
+        display: flex;
+        justify-content: space-between;
+        .next,
+        .prev {
+            flex: 1;
+            > .v-card {
+                padding: 8px;
+                margin: 8px;
+                cursor: pointer;
+            }
+        }
+    }
 }
 </style>
