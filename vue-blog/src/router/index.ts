@@ -11,7 +11,7 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            name: 'home',
+            name: 'index',
             meta: {
                 visible: true,
                 title: 'home',
@@ -22,7 +22,7 @@ const router = createRouter({
             component: Layout,
             children: [
                 {
-                    path: '/',
+                    path: '',
                     name: 'home',
                     meta: {
                         title: 'yulinZ blogs',
@@ -30,7 +30,7 @@ const router = createRouter({
                         keepAlive: true,
                         visible: false,
                     },
-                    component: () => import('@/views/home/index.vue'),
+                    component: () => import('@/views/home/index.tsx'),
                 },
             ],
         },
@@ -43,12 +43,12 @@ const router = createRouter({
                 icon: 'mdi-home-minus-outline',
                 isOne: true, // 一级菜单
             },
-            // redirect: '/home',
+            redirect: '/test/index',
             component: Layout,
             children: [
                 {
-                    path: '/test',
-                    name: 'test',
+                    path: '',
+                    name: 'test-index',
                     meta: {
                         title: 'yulinZ blogs',
                         icon: 'mdi-alpha-t',
@@ -292,7 +292,7 @@ const router = createRouter({
         },
         {
             path: '/article/:id',
-            name: 'articleDetail',
+            name: 'article',
             meta: { keepAlive: false, title: '文章详情', icon: 'mdi-paw-off', visible: false },
             component: Layout,
             children: [
@@ -316,7 +316,7 @@ const router = createRouter({
             children: [
                 {
                     path: '',
-                    name: 'tags',
+                    name: 'tags-index',
                     meta: {
                         title: '标签',
                         visible: false,
@@ -334,7 +334,7 @@ const router = createRouter({
             children: [
                 {
                     path: '',
-                    name: 'category',
+                    name: 'category-index',
                     meta: {
                         title: '文章分类',
                         visible: false,

@@ -1,0 +1,40 @@
+::v-deep(.v-timeline-item__body) {
+    padding: 8px !important;
+}
+/* .item-l,
+.item-r {
+    padding: 6px 0;
+} */
+.right-box {
+    padding: 0 12px 0 12px;
+}
+/* @media (min-width: 600px) {
+    .item-l {
+        padding: 0 6px 12px 0;
+    }
+    .item-r {
+        padding: 0 0 12px 6px;
+    }
+    .right-box {
+        padding-top: 12px;
+    }
+} */
+::v-deep(.mt-10) {
+    margin-top: 10px !important;
+}
+
+.carousel-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+}
+.t-els {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

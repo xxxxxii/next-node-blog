@@ -20,11 +20,10 @@
                     v-model:visible="navState.menuVisible"
                 />
             </v-app-bar>
-
             <v-main style="overflow-y: auto; overflow-x: hidden; height: 100%; width: 100%">
                 <!-- <v-container style="width: 100%"> -->
                 <div class="main">
-                    <RouterView style="min-height: calc(100vh - 210px)" />
+                    <RouterView />
                 </div>
                 <!-- </v-container> -->
                 <Footer />

@@ -5,10 +5,12 @@ import { createApp } from 'vue';
  * @returns {void}
  */
 export default function registeComponent(app: ReturnType<typeof createApp>): void {
-    const files = import.meta.glob(['./*/*.vue', '!**/DragResizeble/*.vue']);
+    const files = import.meta.glob(['./*/*.vue', '!**/DragResizeble/*.vue', './*/*.tsx']);
+    console.log(files, 'files')
     for (const path in files) {
         const name = path.split('/')[1];
         files[path]().then((module) => {
+            console.log(name)
             app.component(name, module['default']);
         });
     }

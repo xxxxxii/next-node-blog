@@ -4,15 +4,14 @@ import vue from '@vitejs/plugin-vue';
 import vuetify from 'vite-plugin-vuetify';
 import viteCompression from 'vite-plugin-compression';
 import compression from 'vite-plugin-compression';
-// import vueJsx from '@vitejs/plugin-vue-jsx'
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
 // https://vitejs.dev/config/
 export default defineConfig({
     base: '/',
-    // base: '/vue-material-admin',
     plugins: [
         vue(),
-        // vueJsx(), 都用Vue还用什么JSX
+        vueJsx(), // 都用Vue还用什么JSX
         viteCompression(),
         vuetify(),
         compression({
@@ -50,9 +49,9 @@ export default defineConfig({
     build: {
         outDir: 'blog',
         manifest: false, // 当设置为 true，构建后将会生成 manifest.json 文件
-        ssrManifest: true, // 构建不生成 SSR 的 manifest 文件
+        ssrManifest: false, // 构建不生成 SSR 的 manifest 文件
         ssr: undefined, // 生成面向 SSR 的构建
-        assetsInlineLimit: '4096', // 小于此阈值的导入或引用资源将内联为 base64 编码
+        assetsInlineLimit: 4096, // 小于此阈值的导入或引用资源将内联为 base64 编码
         cssCodeSplit: true, // 启用 CSS 代码拆分
         minify: 'terser', // 必须启用：terserOptions配置才会有效
         terserOptions: {

@@ -48,7 +48,7 @@ import { ref, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
 import tags from '../comp/tags.vue';
 import { articleByTid } from '@/request/api/open';
-import NoData from '@/components/NoData/index.vue';
+import NoData from '@/components/NoData/index';
 import '../../styles/public.css';
 import dayjs from 'dayjs';
 import { useArticle } from '@/utils/article';

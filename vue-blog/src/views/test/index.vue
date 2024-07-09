@@ -30,8 +30,8 @@
 <script setup lang="ts">
 import DashboardChart from '@/components/DashboardChart/index.vue';
 import { ref, reactive } from 'vue';
-import ThreePie from '@/components/Echarts/ThreePie.vue';
-import ThreePie2 from '@/components/Echarts/ThreePie2.vue';
+import ThreePie from '@/components/ThreePie/ThreePie.vue';
+import ThreePie2 from '@/components/ThreePie2/ThreePie2.vue';
 const value = ref(0);
 setTimeout(() => {
     value.value = 0.8;

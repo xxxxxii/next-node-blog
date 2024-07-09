@@ -1,22 +1,20 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.json",
-  "include": [
-    "src/**/*",
-    "src/**/*.vue",
-    "typings/*"
-  ],
-  "compilerOptions": {
-    "module": "ESNext",
-    "baseUrl": ".",
-    "ignoreDeprecations": "5.0",
-    "types": ["vite/client"],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "references": [
-    {
-      "path": "./tsconfig.config.json"
-    }
-  ]
+    "extends": "@vue/tsconfig/tsconfig.json",
+    "include": ["src/**/*", "src/**/*.vue", "typings/*"],
+    "compilerOptions": {
+        "module": "ESNext",
+        "baseUrl": ".",
+        "ignoreDeprecations": "5.0",
+        "types": ["vite/client"],
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "references": [
+        {
+            "path": "./tsconfig.config.json"
+        }
+    ]
 }

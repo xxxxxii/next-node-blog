@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import Echarts from '@/components/Echarts/index.vue';
+// import Echarts from '@/components/Echarts/index.vue';
 import { reactive, onMounted, watch } from 'vue';
 
 const props = defineProps({
@@ -210,7 +210,6 @@ function initEchart(val = 0) {
                     },
                 },
                 axisLabel: { show: false },
-                pointer: { show: false },
                 itemStyle: {},
                 markPoint: {
                     animation: false,
@@ -241,6 +240,7 @@ function initEchart(val = 0) {
                     },
                 ],
                 pointer: {
+                    show: false,
                     itemStyle: {
                         borderWidth: 15,
                         color: '#37AEE7',

@@ -1,13 +1,9 @@
 {
-  "include": [
-    "vite.config.*",
-    "vitest.config.*",
-    "playwright.config.*"
-  ],
-  "compilerOptions": {
-    "verbatimModuleSyntax": true,
-    "ignoreDeprecations": "5.0",
-    "composite": true,
-    "types": ["node"]
-  }
+    "include": ["vite.config.*", "vitest.config.*", "playwright.config.*"],
+    "compilerOptions": {
+        "verbatimModuleSyntax": false,
+        "ignoreDeprecations": "5.0",
+        "composite": true,
+        "types": ["node"]
+    }
 }

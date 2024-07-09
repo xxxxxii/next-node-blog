@@ -7,7 +7,7 @@
 // import VueApexCharts from 'vue3-apexcharts';
 import { ref, computed, onMounted, reactive } from 'vue';
 import { useMainStore } from '@/stores/useMainStore';
-import ECharts from '@/components/Echarts/index.vue';
+// import ECharts from '@/components/Echarts/index.vue';
 import { chartOption } from '@/components/Echarts/options';
 
 const props = withDefaults(

@@ -12,7 +12,6 @@ import registeComponent from './components';
 
 async function bootstrap() {
     const app = createApp(App);
-    // setupRouter(app);
     app.use(createPinia());
     app.use(vuetify);
     app.use(router);
@@ -23,6 +22,7 @@ async function bootstrap() {
         const d = document.getElementById('_loading_');
         d?.setAttribute('class', 'loading_ hide');
     });
+    // 注册 组件 /src/component 注册为全局组件
     registeComponent(app);
 }
 bootstrap();
