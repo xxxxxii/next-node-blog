@@ -36,7 +36,8 @@ template {
 a {
     background: transparent;
     text-decoration: none;
-    //color: $text;
+    color: var(--text);
+    display: block;
 }
 a:active {
     outline: 0;

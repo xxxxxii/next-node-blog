@@ -1,15 +1,6 @@
 <template>
-    <div class="main">
-        <v-row v-if="arcListData?.length === 0">
-            <v-col cols="12" md="4" v-for="item in 12" :key="item">
-                <v-skeleton-loader
-                    class="mx-auto border"
-                    width="100%"
-                    type="card"
-                ></v-skeleton-loader>
-            </v-col>
-        </v-row>
-        <v-row v-else>
+    <div class="main" v-skeleton.animated="show">
+        <v-row>
             <v-col
                 cols="12"
                 md="4"
@@ -18,23 +9,32 @@
                 style="padding: 8px"
             >
                 <v-card style="height: 100%" @click="articleDes(item)">
-                    <template v-slot:title> {{ item?.title }} </template>
+                    <template v-slot:title>
+                        <div v-skeleton-item>{{ item?.title }}</div>
+                    </template>
 
                     <template v-slot:subtitle>
-                        <div class="flex items-center" style="display: flex">
+                        <div class="flex items-center" style="display: flex; margin: 4px 0">
                             <div class="flex items-center mr-2">
-                                <v-icon size="14" color="red" icon="mdi-clock-time-eight-outline" />
-                                <span>{{ dayjs(item?.createdAt).format('YYYY/MM/DD HH:mm') }}</span>
+                                <v-icon
+                                    size="16"
+                                    color="red"
+                                    icon="mdi-clock-time-eight-outline"
+                                    v-skeleton-item
+                                />
+                                <span v-skeleton-item>{{
+                                    dayjs(item?.createdAt).format('YYYY/MM/DD HH:mm')
+                                }}</span>
                             </div>
                             <div class="flex items-center">
-                                <v-icon size="16" color="red" icon="mdi-read" />
-                                <span>{{ item?.pv }}</span>
+                                <v-icon size="16" color="red" icon="mdi-read" v-skeleton-item />
+                                <span v-skeleton-item>{{ item?.pv }}</span>
                             </div>
                         </div>
                     </template>
 
                     <template v-slot:text>
-                        {{ item?.description }}
+                        <div v-skeleton-item>{{ item?.description }}</div>
                     </template>
                 </v-card>
 
@@ -42,7 +42,7 @@
             </v-col>
         </v-row>
         <v-card>
-            <div class="text-center" v-if="arcListData.length > 0">
+            <div class="text-center">
                 <v-pagination
                     v-model="page.cur"
                     :length="page.count"
@@ -60,6 +60,8 @@ import { ref, onBeforeMount } from 'vue';
 import dayjs from 'dayjs';
 import { useArticle } from '@/utils/article';
 
+const show = ref(true);
+
 const { articleDetail } = useArticle();
 const page = ref({
     cur: 1,
@@ -72,12 +74,16 @@ function pageClick(cPage: any) {
     arcListApi();
 }
 
-const arcListData = ref([]);
+const arcListData = ref([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
 async function arcListApi() {
     const { code, data } = await arcList(page.value);
     if (code === 200) {
         arcListData.value = data?.list;
         page.value.count = data?.total;
+        show.value = false;
+        // setTimeout(() => {
+
+        // }, 3000);
     }
 }
 

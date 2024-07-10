@@ -23,7 +23,7 @@
             <v-main style="overflow-y: auto; overflow-x: hidden; height: 100%; width: 100%">
                 <!-- <v-container style="width: 100%"> -->
                 <div class="main">
-                    <RouterView />
+                    <RouterView :key="route.fullPath" />
                 </div>
                 <!-- </v-container> -->
                 <Footer />
@@ -32,7 +32,7 @@
     </v-responsive>
 </template>
 <script setup lang="ts">
-import { RouterView, useRouter } from 'vue-router';
+import { RouterView, useRouter, useRoute } from 'vue-router';
 import Navigation from './wigets/Navigation.vue';
 import Header from './wigets/Header.vue';
 import Footer from './wigets/Footer.vue';
@@ -41,6 +41,7 @@ import { useMainStore } from '@/stores/useMainStore';
 
 const mainStore = useMainStore();
 const router = useRouter();
+const route = useRoute();
 const navState = reactive({
     menuVisible: true,
     rail: !mainStore.isMobile,

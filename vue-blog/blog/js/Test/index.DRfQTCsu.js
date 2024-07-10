@@ -1,1 +1,0 @@
-import{d as e,a3 as s,a7 as a}from"../@vue/@vue.se5cR7rz.js";const t={class:"test"},i=e({__name:"index",props:{visible:{type:Boolean}},emits:["change"],setup:(e,{emit:i})=>(i("change",1),(e,i)=>(s(),a("div",t)))});export{i as default};

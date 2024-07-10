@@ -9,6 +9,7 @@ import { createHead } from '@unhead/vue';
 const head = createHead();
 import '@/plugins/pwa';
 import registeComponent from './components';
+import { SkeletonItem, Skeleton } from '@/directives/skeleton';
 
 async function bootstrap() {
     const app = createApp(App);
@@ -16,6 +17,8 @@ async function bootstrap() {
     app.use(vuetify);
     app.use(router);
     app.use(head);
+    app.directive('skeleton', Skeleton);
+    app.directive('skeletonItem', SkeletonItem);
     // 路由准备好再挂载
     await router.isReady();
     app.mount('#app').$nextTick(() => {

@@ -6,16 +6,52 @@ import { useArticle } from '@/utils/article';
 import SysTip from './componets/sysTip/index';
 import FriendLink from './componets/friendlink/index';
 import Tags from '@/views/comp/tags.vue';
+// import { SkeletonItem, Skeleton } from '@/directives/skeleton';
+
+// const vSkeleton = Skeleton;
+// const vSkeletonItem = SkeletonItem;
 
 const { articleDetail, tagDetail, categoryDetail } = useArticle();
 
 const Home = defineComponent({
     setup() {
-        const homeData: any = ref(null);
+        const homeData: any = ref({
+            banner: [{}, {}],
+            topnews: [{}, {}, {}, {}, {}, {}],
+            article: [
+                {
+                    category: {
+                        name: '',
+                    },
+                    list: [{}, {}, {}, {}],
+                },
+                {
+                    category: {
+                        name: '',
+                    },
+                    list: [{}, {}, {}, {}],
+                },
+                {
+                    category: {
+                        name: '',
+                    },
+                    list: [{}, {}, {}, {}],
+                },
+                {
+                    category: {
+                        name: '',
+                    },
+                    list: [{}, {}, {}, {}],
+                },
+            ],
+            recommend: [{}, {}, {}],
+        });
+        const show: any = ref(true);
         async function homeApi() {
             const { code, data } = await home({ mode: 'api' });
             if (code === 200) {
                 homeData.value = data;
+                show.value = false;
                 console.log(homeData.value, 'homeData.value');
             }
         }
@@ -25,7 +61,7 @@ const Home = defineComponent({
         });
         return () => (
             <>
-                <v-row class='flex main' v-show={!homeData.value}>
+                {/* <v-row class='flex main' v-show={!homeData.value}>
                     <v-skeleton-loader
                         class='mx-auto'
                         elevation={2}
@@ -34,9 +70,9 @@ const Home = defineComponent({
                         type='card-avatar, article, actions'
                         boilerplate
                     ></v-skeleton-loader>
-                </v-row>
-                <v-row class='flex main' v-show={homeData.value}>
-                    <v-col cols={12} sm={10}>
+                </v-row> */}
+                <v-row class='flex main' v-skeleton={show.value}>
+                    <v-col cols={12} sm={10} class='left-box'>
                         <v-row>
                             <v-col cols={12} sm={6} class='item-l'>
                                 <v-card>
@@ -51,7 +87,11 @@ const Home = defineComponent({
                                     >
                                         {homeData.value?.banner?.map((item) => {
                                             return (
-                                                <v-carousel-item src={item.img_url} cover>
+                                                <v-carousel-item
+                                                    src={item.img_url}
+                                                    cover
+                                                    v-skeleton-item
+                                                >
                                                     <div
                                                         style='
                                                             width: 100%;
@@ -77,12 +117,18 @@ const Home = defineComponent({
                                 </v-card>
                             </v-col>
                             <v-col cols={12} sm={6} class='item-r'>
-                                <v-card title={'最新文章'} style='height: 100%'>
+                                <v-card style='height: 100%'>
+                                    <v-card-item>
+                                        <v-card-title>
+                                            <span v-skeleton-item>最新文章</span>
+                                        </v-card-title>
+                                    </v-card-item>
                                     {homeData.value?.topnews?.news?.map((item) => {
                                         return (
                                             <v-card
                                                 style='padding: 6px; margin: 10px 15px'
                                                 onClick={articleDetail.bind(this, item)}
+                                                v-skeleton-item
                                             >
                                                 <div
                                                     class='d-flex'
@@ -116,19 +162,25 @@ const Home = defineComponent({
                                         <v-card style={'height: 100%'}>
                                             <v-card-item>
                                                 <v-card-title>
-                                                    <span
+                                                    <div
                                                         onClick={categoryDetail.bind(this, item)}
-                                                        style={'cursor: pointer'}
+                                                        style={'cursor: pointer; min-height:30px'}
+                                                        v-skeleton-item
                                                     >
                                                         {item?.category?.name}
-                                                    </span>
+                                                    </div>
                                                 </v-card-title>
                                             </v-card-item>
 
                                             {item?.list?.length > 0 ? (
                                                 item?.list.map((ic: any) => {
                                                     return (
-                                                        <div style={'margin: 8px 15px'}>
+                                                        <div
+                                                            style={
+                                                                'margin: 8px 15px;min-height:32px'
+                                                            }
+                                                            v-skeleton-item
+                                                        >
                                                             <v-card
                                                                 style={'padding: 6px'}
                                                                 onClick={articleDetail.bind(
@@ -154,7 +206,7 @@ const Home = defineComponent({
                         <SysTip />
                         {/* 文章推荐  */}
                         <v-card style={'padding: 8px; margin-top: 12px'}>
-                            <div style={'font-size: 0.9rem; font-weight: 600'}>
+                            <div style={'font-size: 0.9rem; font-weight: 600'} v-skeleton-item>
                                 <v-icon
                                     size={16}
                                     color={'red'}
@@ -169,6 +221,7 @@ const Home = defineComponent({
                                             key={item?.id}
                                             style={'margin: 8px 0; cursor: pointer'}
                                             onclick={articleDetail.bind(this, item)}
+                                            v-skeleton-item
                                         >
                                             <v-list-item>{item?.title}</v-list-item>
                                         </v-card>
