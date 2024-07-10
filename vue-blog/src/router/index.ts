@@ -34,31 +34,31 @@ const router = createRouter({
                 },
             ],
         },
-        {
-            path: '/test',
-            name: 'test',
-            meta: {
-                visible: false,
-                title: 'test',
-                icon: 'mdi-home-minus-outline',
-                isOne: true, // 一级菜单
-            },
-            redirect: '/test/index',
-            component: Layout,
-            children: [
-                {
-                    path: '',
-                    name: 'test-index',
-                    meta: {
-                        title: 'yulinZ blogs',
-                        icon: 'mdi-alpha-t',
-                        keepAlive: true,
-                        visible: false,
-                    },
-                    component: () => import('@/views/test/index.vue'),
-                },
-            ],
-        },
+        // {
+        //     path: '/test',
+        //     name: 'test',
+        //     meta: {
+        //         visible: false,
+        //         title: 'test',
+        //         icon: 'mdi-home-minus-outline',
+        //         isOne: true, // 一级菜单
+        //     },
+        //     redirect: '/test/index',
+        //     component: Layout,
+        //     children: [
+        //         {
+        //             path: '',
+        //             name: 'test-index',
+        //             meta: {
+        //                 title: 'yulinZ blogs',
+        //                 icon: 'mdi-alpha-t',
+        //                 keepAlive: true,
+        //                 visible: false,
+        //             },
+        //             component: () => import('@/views/test/index.vue'),
+        //         },
+        //     ],
+        // },
         {
             path: '/blog',
             name: 'blog',

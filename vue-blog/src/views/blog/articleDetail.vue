@@ -163,7 +163,7 @@ async function articleDetailApi() {
         prevApi(data?.id, data?.cid);
         nextApi(data?.id, data?.cid);
         // 阅读量+1
-        pvAdd({ id: id });
+        pvAdd({ id: id.value });
 
         loading.value = false;
     }

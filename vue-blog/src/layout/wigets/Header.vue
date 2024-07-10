@@ -67,26 +67,16 @@
                 </v-menu>
             </v-btn>
         </div>
-        <SearchDialog
-            v-model="showSearch"
-            :title="'关键词:' + key"
-            :list="searchList"
-            @keyup.esc="hideSearchModal"
-        >
+        <SearchDialog v-model="showSearch" :title="'关键词:' + key" :list="searchList">
             <template #footer>
-                <v-btn
-                    color="primary"
-                    variant="plain"
-                    text="关闭"
-                    @click="showSearch = false"
-                ></v-btn>
+                <v-btn color="primary" variant="plain" text="关闭" @click="hideSearchModal"></v-btn>
             </template>
         </SearchDialog>
     </v-card>
 </template>
 <script lang="ts" setup>
 import { useMainStore } from '@/stores/useMainStore';
-import { defineEmits, computed, ref } from 'vue';
+import { defineEmits, computed, ref, onMounted, onBeforeUnmount } from 'vue';
 import logo from '@/assets/admin-logo.png';
 import wxtx from '@/assets/wx.png';
 import { search } from '@/request/api/open';
@@ -138,6 +128,7 @@ const showSearch = ref(false);
 const key = ref('');
 const searchList = ref([]);
 async function searchApi() {
+    if (!key.value) return;
     const { code, data } = await search({ keyword: key.value, pageSize: 999 });
     console.log(key.value, data, 'val');
     if (code === 200) {
@@ -146,8 +137,16 @@ async function searchApi() {
     }
 }
 
-function hideSearchModal(e: ElementEvent) {
-    showSearch.value = false;
-}
+// 关闭 弹窗
+const hideSearchModal = () => {
+    if (showSearch.value) showSearch.value = false;
+};
+
+onMounted(() => {
+    document.addEventListener('keydown', hideSearchModal);
+});
+onBeforeUnmount(() => {
+    document.removeEventListener('keydown', hideSearchModal);
+});
 </script>
 @/stores/useMainStore
