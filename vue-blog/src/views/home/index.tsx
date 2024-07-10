@@ -61,16 +61,6 @@ const Home = defineComponent({
         });
         return () => (
             <>
-                {/* <v-row class='flex main' v-show={!homeData.value}>
-                    <v-skeleton-loader
-                        class='mx-auto'
-                        elevation={2}
-                        height={800}
-                        width={'100%'}
-                        type='card-avatar, article, actions'
-                        boilerplate
-                    ></v-skeleton-loader>
-                </v-row> */}
                 <v-row class='flex main' v-skeleton={show.value}>
                     <v-col cols={12} sm={10} class='left-box'>
                         <v-row>

@@ -17,7 +17,8 @@ const api = {
     PvAdd: '/api/pvadd',
     Category: '/api/category',
     Prev: '/api/prev',
-    Next: '/api/next'
+    Next: '/api/next',
+    Search: '/api/article/search',
 };
 
 // 首页
@@ -98,4 +99,9 @@ export const prev = (params: any) => {
 // 下篇文章
 export const next = (params: any) => {
     return service.get(api.Next + '?' + qs.stringify(params));
+};
+
+// 搜索
+export const search = (params: any) => {
+    return service.get(api.Search + '?' + qs.stringify(params));
 };

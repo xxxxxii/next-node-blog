@@ -19,9 +19,12 @@
                 variant="outlined"
                 density="compact"
                 label="Search"
+                placeholder="文章->enter search"
                 prepend-inner-icon="mdi-magnify"
                 hide-details
                 clearable
+                v-model="key"
+                @keyup.enter="searchApi"
             ></v-text-field>
         </div>
         <div class="tool_btns">
@@ -64,13 +67,31 @@
                 </v-menu>
             </v-btn>
         </div>
+        <SearchDialog
+            v-model="showSearch"
+            :title="'关键词:' + key"
+            :list="searchList"
+            @keyup.esc="hideSearchModal"
+        >
+            <template #footer>
+                <v-btn
+                    color="primary"
+                    variant="plain"
+                    text="关闭"
+                    @click="showSearch = false"
+                ></v-btn>
+            </template>
+        </SearchDialog>
     </v-card>
 </template>
 <script lang="ts" setup>
 import { useMainStore } from '@/stores/useMainStore';
-import { defineEmits, computed } from 'vue';
+import { defineEmits, computed, ref } from 'vue';
 import logo from '@/assets/admin-logo.png';
 import wxtx from '@/assets/wx.png';
+import { search } from '@/request/api/open';
+import SearchDialog from '../comp/SearchDialog.vue';
+import type { ElementEvent } from 'echarts';
 
 const emit = defineEmits(['update:rail', 'update:mini', 'update:visible']);
 
@@ -112,5 +133,21 @@ const onShowMenu = () => {
     emit('update:rail', false);
     // emit('update:mini', false);
 };
+
+const showSearch = ref(false);
+const key = ref('');
+const searchList = ref([]);
+async function searchApi() {
+    const { code, data } = await search({ keyword: key.value, pageSize: 999 });
+    console.log(key.value, data, 'val');
+    if (code === 200) {
+        searchList.value = data?.list;
+        showSearch.value = true;
+    }
+}
+
+function hideSearchModal(e: ElementEvent) {
+    showSearch.value = false;
+}
 </script>
 @/stores/useMainStore
