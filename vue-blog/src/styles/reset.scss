@@ -256,17 +256,19 @@ body {
 div {
     &::-webkit-scrollbar {
         // 定义了滚动条整体的样式；
-        width: 3px;
-        height: 3px;
+        width: 0px;
+        height: 0px;
     }
     &::-webkit-scrollbar-thumb {
-        width: 3px;
-        height: 3px;
+        width: 0px;
+        height: 0px;
         border-radius: 1.5px;
         background-color: var(--scrollbar);
     }
 }
-iframe, body, html {
+iframe, html {
+    // scrollbar-color: #888 #f1f1f1;
+    // scrollbar-width: thin;
     &::-webkit-scrollbar {
         // 定义了滚动条整体的样式；
         width: 6px;
@@ -274,8 +276,8 @@ iframe, body, html {
         background-color: var(--scrollbar);
     }
     &::-webkit-scrollbar-thumb {
-        // width: 6px;
-        // height: 6px;
+        width: 6px;
+        height: 6px;
         // border-radius: 8px;
         // background-color: var(--scrollbar);
     }
@@ -286,3 +288,14 @@ iframe, body, html {
         background-color: rgb(var(--theme-background)) !important // 轨道颜色
     }
 }
+/* 首先，隐藏浏览器默认的滚动条 */
+body::-webkit-scrollbar {
+    display: none; /* 对于Webkit浏览器 */
+}
+
+/* 然后，使用伪元素创建自定义滚动条 */
+body {
+    scrollbar-width: thin; /* 对于Firefox */
+    scrollbar-color: var(--scrollbar)  var(--scrollbar-bg); /* 对于Firefox */
+}
+ 

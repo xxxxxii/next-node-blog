@@ -32,12 +32,14 @@
 }
 :root {
     --theme-background: 238,242,246;
-    --scrollbar: #e5e5e5;
+    --scrollbar: #bebdbd;
+    --scrollbar-bg:#e7e7e7;
     --text:#414141;
 }
 :root[theme="dark"] {
     --theme-background: 18, 18, 18;
-    --scrollbar: #515151;
+    --scrollbar: #414141;
+    --scrollbar-bg:#222222;
     --text: #f8f8f8;
     .text_ {
         color: #e5eaef;

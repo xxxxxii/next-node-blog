@@ -14,25 +14,13 @@
         <v-spacer></v-spacer>
         <div v-if="!mainStore.isMobile" style="width: 320px" class="search_ip mr-2">
             <!-- <div id="docsearch"></div> -->
-            <v-text-field
-                rounded
-                variant="outlined"
-                density="compact"
-                label="Search"
-                placeholder="文章->enter search"
-                prepend-inner-icon="mdi-magnify"
-                hide-details
-                clearable
-                v-model="key"
-                @keyup.enter="searchApi"
-            ></v-text-field>
+            <v-text-field rounded variant="outlined" density="compact" label="Search" placeholder="文章->enter search"
+                prepend-inner-icon="mdi-magnify" hide-details clearable v-model="key"
+                @keyup.enter="searchApi"></v-text-field>
         </div>
         <div class="tool_btns">
-            <v-btn
-                @click="mainStore.onTheme"
-                variant="text"
-                :icon="mainStore.theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"
-            />
+            <v-btn @click="mainStore.onTheme" variant="text"
+                :icon="mainStore.theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'" />
             <!-- <v-btn variant="text" icon="mdi-bell-outline">
                 <v-badge content="2" color="error">
                     <v-icon size="small"></v-icon>
@@ -52,26 +40,21 @@
                 <span v-if="!mainStore.isMobile">陈咩咩啊</span>
                 <v-menu activator="parent">
                     <v-list :lines="false" nav density="compact">
-                        <v-list-item
-                            title="Github"
-                            prepend-icon="mdi-github"
-                            @click="link('https://github.com/armomu/vue-material-admin')"
-                        />
-                        <v-list-item
-                            title="Email"
-                            prepend-icon="mdi-email"
-                            @click="link('mailto:894620576@qq.com')"
-                        />
+                        <v-list-item title="Github" prepend-icon="mdi-github"
+                            @click="link('https://github.com/armomu/vue-material-admin')" />
+                        <v-list-item title="Email" prepend-icon="mdi-email" @click="link('mailto:894620576@qq.com')" />
                         <v-list-item title="Sign out" prepend-icon="mdi-login" to="/login" />
                     </v-list>
                 </v-menu>
             </v-btn>
         </div>
-        <SearchDialog v-model="showSearch" :title="'关键词:' + key" :list="searchList">
-            <template #footer>
-                <v-btn color="primary" variant="plain" text="关闭" @click="hideSearchModal"></v-btn>
-            </template>
-        </SearchDialog>
+        <div>
+            <SearchDialog v-model="showSearch" :title="'关键词:' + key" :list="searchList">
+                <template #footer>
+                    <v-btn color="primary" variant="plain" text="关闭" @click="hideSearchModal"></v-btn>
+                </template>
+            </SearchDialog>
+        </div>
     </v-card>
 </template>
 <script lang="ts" setup>
@@ -81,7 +64,7 @@ import logo from '@/assets/admin-logo.png';
 import wxtx from '@/assets/wx.png';
 import { search } from '@/request/api/open';
 import SearchDialog from '../comp/SearchDialog.vue';
-import type { ElementEvent } from 'echarts';
+
 
 const emit = defineEmits(['update:rail', 'update:mini', 'update:visible']);
 
