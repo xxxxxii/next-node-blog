@@ -79,6 +79,7 @@ const Home = defineComponent({
                                             return (
                                                 <v-carousel-item
                                                     src={item.img_url}
+                                                    alt={item.title}
                                                     cover
                                                     v-skeleton-item
                                                 >
