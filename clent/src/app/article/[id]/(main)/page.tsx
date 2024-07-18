@@ -24,7 +24,7 @@ const Article = async ({ params: { id } }: { params: { id: string } }) => {
   const token = cookie.get("token");
 
   let reponse = await Promise.all([
-    getPostsDetails({ id: id }).then(async (res: response) => {
+    getPostsDetails({ id: id }).then(async (res) => {
       return res.data.data;
     }),
   ]);

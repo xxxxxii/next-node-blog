@@ -9,9 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@bytemd/plugin-gfm": "^1.21.0",
+    "@bytemd/plugin-highlight": "^1.21.0",
+    "@bytemd/react": "^1.21.0",
     "@emoji-mart/data": "^1.2.1",
     "@emoji-mart/react": "^1.1.1",
     "@types/qs": "^6.9.15",
+    "@types/react-highlight-words": "^0.20.0",
+    "@types/turndown": "^5.0.4",
+    "@uiw/codemirror-theme-vscode": "^4.23.0",
+    "@uiw/react-codemirror": "^4.23.0",
     "antd": "^5.19.1",
     "axios": "^1.7.2",
     "emoji-mart": "^5.2.0",
@@ -22,9 +29,14 @@
     "qs": "^6.12.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-easy-crop": "^5.0.7",
+    "react-highlight-words": "^0.20.0",
     "react-infinite-scroll-component": "^6.1.0",
     "sass": "^1.77.8",
     "toc-helper": "^2.1.1",
+    "turndown": "^7.2.0",
+    "turndown-plugin-gfm": "^1.0.2",
+    "wangeditor-for-react": "^1.5.6",
     "zustand": "^4.5.4"
   },
   "devDependencies": {
