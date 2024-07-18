@@ -8,7 +8,7 @@ let {
 
 const {
   api: {
-    service: { article, category, tag },
+    service: { article, category, tag, sysUser },
   },
 } = Chan.modules;
 
@@ -75,6 +75,9 @@ class ArticleController {
       const cData = await category.findId(data?.cid);
       data["category"] = cData || {};
 
+      const uData = await sysUser.detail(data?.user_id);
+      data["users"] = uData || {};
+
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);
@@ -111,11 +114,12 @@ class ArticleController {
     try {
       const cur = req.query.cur || 1;
       const cid = req.query.cid;
+      const sort = req.query.sort;
       const pageSize = req.query.pageSize || 10;
-      const data = await article.list(cur, pageSize, cid);
-      data.list.forEach((ele) => {
-        ele.updatedAt = dayjs(ele.updatedAt).format("YYYY-MM-DD HH:mm:ss");
-      });
+      const data = await article.list(cur, pageSize, cid, sort);
+      // data.list.forEach((ele) => {
+      //   ele.updatedAt = dayjs(ele.updatedAt).format("YYYY-MM-DD HH:mm:ss");
+      // });
       res.json({ ...success, data: data });
     } catch (err) {
       next(err);

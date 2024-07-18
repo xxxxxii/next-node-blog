@@ -196,19 +196,20 @@ class ArticleService {
   }
 
   // 文章列表
-  static async list(cur = 1, pageSize = 10, id) {
+  static async list(cur = 1, pageSize = 10, id, sort) {
     try {
       // 查询个数
       let sql;
-      if (id) {
-        sql = `SELECT COUNT(id) as count FROM ${ArticleService.model} WHERE cid IN (${id})`;
+      if (id && id != 0) {
+        sql = `SELECT COUNT(id) as count FROM ${ArticleService.model} WHERE tag_id like '%,${id},%'`;
       } else {
         sql = `SELECT COUNT(id) as count FROM ${ArticleService.model}`;
       }
       const total = await knex.raw(sql);
       const offset = parseInt((cur - 1) * pageSize);
       let list;
-      if (id) {
+      if (id && id != 0) {
+        console.log(sort, id, "2222");
         list = await knex
           .select([
             "id",
@@ -219,12 +220,14 @@ class ArticleService {
             "author",
             "status",
             "img",
+            "likes",
           ])
           .from(ArticleService.model)
-          .where("cid", "=", id)
+          .whereILike("tag_id", `%,${id},%`)
           .limit(pageSize)
           .offset(offset)
-          .orderBy("id", "desc");
+          .orderBy(sort, "desc");
+        // .orderBy("id", "desc");
       } else {
         list = await knex
           .select([
@@ -235,12 +238,15 @@ class ArticleService {
             "pv",
             "createdAt",
             "status",
+            "likes",
           ])
           .from(ArticleService.model)
           .limit(pageSize)
           .offset(offset)
-          .orderBy("id", "desc");
+          // .orderBy("id", "desc");
+          .orderBy(sort, "desc");
       }
+
       const count = total[0][0].count;
       return {
         count: count,

@@ -1,0 +1,40 @@
+{
+  "name": "clent",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emoji-mart/data": "^1.2.1",
+    "@emoji-mart/react": "^1.1.1",
+    "@types/qs": "^6.9.15",
+    "antd": "^5.19.1",
+    "axios": "^1.7.2",
+    "emoji-mart": "^5.2.0",
+    "ioredis": "^5.4.1",
+    "js-cookie": "^3.0.5",
+    "md-editor-rt": "^4.17.3",
+    "next": "14.2.5",
+    "qs": "^6.12.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-infinite-scroll-component": "^6.1.0",
+    "sass": "^1.77.8",
+    "toc-helper": "^2.1.1",
+    "zustand": "^4.5.4"
+  },
+  "devDependencies": {
+    "@iconify/react": "^5.0.1",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "postcss": "^8",
+    "tailwind-scrollbar": "^3.0.4",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}

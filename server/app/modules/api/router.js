@@ -12,19 +12,7 @@ module.exports = (opt) => {
     },
     app,
   } = opt;
-
-  app.all("*", function (req, res) {
-    res.header("Access-Control-Allow-Methods", "GETs,POST,PUT");
-    res.header("Access-Control-Allow-Headers", "Content-Type");
-    // res.header("Content-Type", "application/json;charset=utf-8");
-    req.next();
-  });
-  app.use(
-    cors({
-      allowedHeaders: ["Content-Type", "Authorization"],
-      exposedHeaders: ["Authorization"],
-    })
-  );
+  app.use(cors());
 
   // 60s
   router.get("/60s", OpenController.news60s);
@@ -169,6 +157,9 @@ module.exports = (opt) => {
   router.post("/loginLog/create", auth(), controller.loginLog.create);
   router.get("/loginLog/delete", auth(), controller.loginLog.delete);
   router.get("/loginLog/list", auth(), controller.loginLog.list);
+
+  /////////////////////////////////////////////////////////
+  router.get("/blog/treeTag", controller.blogCategory.list);
 
   //配置前缀
   app.use("/api", router);

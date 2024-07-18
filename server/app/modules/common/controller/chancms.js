@@ -131,6 +131,7 @@ class ChancmsController {
     try {
       const { id, current = 1, pageSize = 10 } = req.query;
       const data = await chancms.list({ id, current, pageSize });
+      console.log(chancms, "chancms");
       res.json({ ...success, data });
     } catch (error) {
       console.error(error);
