@@ -4,9 +4,9 @@ import Modal from "@/components/common/CollectionModal";
 import Image from "@/components/next/Image";
 import { Context } from "@/components/page/problem/ProblemDetail";
 import useUserData from "@/store/user/user-data";
-import { uncollection } from "@/request/collection";
-import { follow, unfollow } from "@/request/follow";
-import { like, unlike } from "@/request/like";
+// import { uncollection } from "@/request/collection";
+// import { follow, unfollow } from "@/request/follow";
+// import { like, unlike } from "@/request/like";
 
 /** 问答页面对问题的点赞和收藏按钮*/
 const ToolBar = () => {
@@ -15,51 +15,51 @@ const ToolBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   function unCollectionProblem() {
-    uncollection(data?.id)
-      .then((res) => {
-        reload();
-      })
-      .catch(() => {
-        message.error("取消失败");
-      });
+    // uncollection(data?.id)
+    //   .then((res) => {
+    //     reload();
+    //   })
+    //   .catch(() => {
+    //     message.error("取消失败");
+    //   });
   }
 
   function likeProblem() {
-    like(data.id, "problem")
-      .then(() => {
-        reload();
-      })
-      .catch(() => {
-        message.error("点赞失败");
-      });
+    // like(data.id, "problem")
+    //   .then(() => {
+    //     reload();
+    //   })
+    //   .catch(() => {
+    //     message.error("点赞失败");
+    //   });
   }
 
   function unLikeProblem() {
-    unlike(data?.id)
-      .then(() => {
-        reload();
-      })
-      .catch(() => {
-        message.error("取消失败");
-      });
+    // unlike(data?.id)
+    //   .then(() => {
+    //     reload();
+    //   })
+    //   .catch(() => {
+    //     message.error("取消失败");
+    //   });
   }
 
   function followProblem() {
-    follow(data.id, "problem")
-      .then((res) => {
-        reload();
-        message.success("关注成功");
-      })
-      .catch(() => {
-        message.error("关注失败");
-      });
+    // follow(data.id, "problem")
+    //   .then((res) => {
+    //     reload();
+    //     message.success("关注成功");
+    //   })
+    //   .catch(() => {
+    //     message.error("关注失败");
+    //   });
   }
   function unFollowProblem() {
-    unfollow(data.id)
-      .then(() => {
-        reload();
-      })
-      .catch(() => {});
+    // unfollow(data.id)
+    //   .then(() => {
+    //     reload();
+    //   })
+    //   .catch(() => {});
   }
   return (
     <div className="flex">
@@ -71,8 +71,8 @@ const ToolBar = () => {
             !userData || userData?.id == data.author_data.id
               ? () => {}
               : (data.collection_state as unknown as number[])?.length == 1
-                ? unCollectionProblem
-                : () => setIsOpen(true)
+              ? unCollectionProblem
+              : () => setIsOpen(true)
           }
         >
           <Image

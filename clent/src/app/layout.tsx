@@ -5,9 +5,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "@/styles/globals.scss";
 import "@/styles/reset.css";
-// import Header from "@/components/common/Header";
+import Header from "@/components/common/Header";
 import { UserDataStoreProvider } from "@/store/user/user-data";
 import { cookies } from "next/headers";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,9 +36,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <UserDataStoreProvider data={userInfo}>
-          <Antd>{children}</Antd>
-        </UserDataStoreProvider>
+        <AntdRegistry>
+          <UserDataStoreProvider data={userInfo}>
+            <Header />
+            <Antd>{children}</Antd>
+          </UserDataStoreProvider>
+        </AntdRegistry>
       </body>
     </html>
   );

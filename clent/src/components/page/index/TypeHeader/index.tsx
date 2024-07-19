@@ -1,13 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { FC } from "react";
+import type {
+  AwaitedReactNode,
+  FC,
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+} from "react";
 import classNames from "classnames";
 import useUserData from "@/store/user/user-data";
 // import { responseType as typeTreeRsponseType } from "@/request/type/type-tree-index";
 import style from "../index.module.scss";
 
-type changeOptionType = { type?: string; tag?: string; follow?: true };
+type changeOptionType = { type?: string; tag?: any; follow?: true };
 export type changeType = ({
   type,
   tag,
@@ -17,7 +25,7 @@ export type changeType = ({
   follow?: true;
 }) => void;
 interface propsType {
-  data: [];
+  data: any;
   className?: string;
   change: ({ type, tag, follow }: changeOptionType) => void;
 }
@@ -26,14 +34,18 @@ const TypeHeader: FC<propsType> = (props) => {
   let { data } = props;
   let userData = useUserData((s) => s.data);
   const [activeTypeKey, setActiveTypeKey] = useState(data[0]?.id);
-  const [activeTagKey, setActiveTagKey] = useState(0);
+  const [activeTagKey, setActiveTagKey] = useState<string | number>(0);
   /** 获取type和tag在数组中的位置，判断是修改了type还是tag*/
-  const typeIndex = data.findIndex((item) => item.id == activeTypeKey);
+  const typeIndex = data.findIndex(
+    (item: { id: any }) => item.id == activeTypeKey
+  );
   const tagIndex = data[typeIndex]?.tags?.findIndex(
-    (item) => item.id == activeTagKey
+    (item: { id: number }) => item.id == activeTagKey
   );
 
-  const tagList = data.find((item) => item.id == activeTypeKey)?.tags;
+  const tagList = data.find(
+    (item: { id: any }) => item.id == activeTypeKey
+  )?.tags;
 
   let fristLoad = useRef(true);
   useEffect(() => {
@@ -65,7 +77,7 @@ const TypeHeader: FC<propsType> = (props) => {
     setActiveTypeKey(id);
     setActiveTagKey(0);
   }
-  function switchTag(id: string) {
+  function switchTag(id: string | number) {
     console.log(id, "tagId");
     setActiveTagKey(id);
   }
@@ -82,23 +94,39 @@ const TypeHeader: FC<propsType> = (props) => {
         ])}
       >
         <div className="flex">
-          {data.map((item) => {
-            return (
-              (!item.isLogin || userData) && (
-                <div
-                  key={`type${item.id}`}
-                  className={classNames([
-                    "flex h-11 cursor-pointer items-center px-2",
-                    item.id == activeTypeKey ? style["type-active"] : "",
-                    style.shadow,
-                  ])}
-                  onClick={() => switchType(item.id)}
-                >
-                  {item.label}
-                </div>
-              )
-            );
-          })}
+          {data.map(
+            (item: {
+              isLogin: any;
+              id: string;
+              label:
+                | string
+                | number
+                | bigint
+                | boolean
+                | ReactElement<any, string | JSXElementConstructor<any>>
+                | Iterable<ReactNode>
+                | ReactPortal
+                | Promise<AwaitedReactNode>
+                | null
+                | undefined;
+            }) => {
+              return (
+                (!item.isLogin || userData) && (
+                  <div
+                    key={`type${item.id}`}
+                    className={classNames([
+                      "flex h-11 cursor-pointer items-center px-2",
+                      item.id == activeTypeKey ? style["type-active"] : "",
+                      style.shadow,
+                    ])}
+                    onClick={() => switchType(item.id)}
+                  >
+                    {item.label}
+                  </div>
+                )
+              );
+            }
+          )}
         </div>
       </div>
 
@@ -123,23 +151,31 @@ const TypeHeader: FC<propsType> = (props) => {
               </div>
             ) : null}
 
-            {tagList?.map((item, index) => (
-              <div
-                key={item.id}
-                className={classNames([
-                  "flex h-6 cursor-pointer items-center px-2.5",
-                  item.id == activeTagKey ? style["tag-active"] : "",
-                  "bg-white",
-                  "rounded-2xl",
-                  "text-[#909090]",
-                  "mr-2",
-                  "mt-2",
-                ])}
-                onClick={() => switchTag(item.id)}
-              >
-                {item.name}
-              </div>
-            ))}
+            {tagList?.map(
+              (
+                item: {
+                  id: string | number;
+                  name: string;
+                },
+                index: any
+              ) => (
+                <div
+                  key={item.id}
+                  className={classNames([
+                    "flex h-6 cursor-pointer items-center px-2.5",
+                    item.id == activeTagKey ? style["tag-active"] : "",
+                    "bg-white",
+                    "rounded-2xl",
+                    "text-[#909090]",
+                    "mr-2",
+                    "mt-2",
+                  ])}
+                  onClick={() => switchTag(item.id)}
+                >
+                  {item.name}
+                </div>
+              )
+            )}
           </div>
         </div>
       }

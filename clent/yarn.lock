@@ -859,6 +859,11 @@
   dependencies:
     "@types/unist" "^2"
 
+"@types/js-cookie@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.npmjs.org/@types/js-cookie/-/js-cookie-3.0.6.tgz#a04ca19e877687bd449f5ad37d33b104b71fdf95"
+  integrity sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==
+
 "@types/linkify-it@^5":
   version "5.0.0"
   resolved "https://registry.npmjs.org/@types/linkify-it/-/linkify-it-5.0.0.tgz#21413001973106cda1c3a9b91eedd4ccd5469d76"
@@ -3487,6 +3492,11 @@ unist-util-visit@^4.0.0, unist-util-visit@^4.1.2:
     "@types/unist" "^2.0.0"
     unist-util-is "^5.0.0"
     unist-util-visit-parents "^5.1.1"
+
+use-animate-number@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/use-animate-number/-/use-animate-number-1.0.5.tgz#c224fd3ce81d0b563a5215d714aaa98ad8c67470"
+  integrity sha512-zAavKn83Z6V6wlatpEp+fmbAS6vMA3tISudw04eSeyXc0AZG98JDDK1U+gmMxV/oATcub+ijgrENMPqHue+SiA==
 
 use-sync-external-store@1.2.0:
   version "1.2.0"

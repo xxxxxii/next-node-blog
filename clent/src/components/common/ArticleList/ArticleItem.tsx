@@ -1,4 +1,11 @@
-import type { FC, ReactNode } from "react";
+import type {
+  AwaitedReactNode,
+  FC,
+  JSXElementConstructor,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+} from "react";
 import dayjs from "@dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -11,7 +18,7 @@ import { Icon } from "@iconify/react";
 
 dayjs.extend(relativeTime);
 export interface propsType {
-  data: Omit<articleListItemType, "state">;
+  data: any;
   titleKeyword?: (title: articleListItemType["title"]) => ReactNode;
   topRight?: ReactNode;
   className?: string;
@@ -38,16 +45,35 @@ const ArticleItem: FC<propsType> = ({
             </span>
           </span>
           <span>
-            {data.tag?.slice(0, 2).map((item, index) => (
-              <a
-                className={classNames(["text-[#86909c]", style.tag])}
-                key={`tag${data.id}${item.name}${index}`}
-                href={`/tag/${item.name}/article`}
-                target="_blank"
-              >
-                {item.name}
-              </a>
-            ))}
+            {data.tag
+              ?.slice(0, 2)
+              .map(
+                (
+                  item: {
+                    name:
+                      | string
+                      | number
+                      | bigint
+                      | boolean
+                      | ReactElement<any, string | JSXElementConstructor<any>>
+                      | Iterable<ReactNode>
+                      | ReactPortal
+                      | Promise<AwaitedReactNode>
+                      | null
+                      | undefined;
+                  },
+                  index: any
+                ) => (
+                  <a
+                    className={classNames(["text-[#86909c]", style.tag])}
+                    key={`tag${data.id}${item.name}${index}`}
+                    href={`/tag/${item.name}/article`}
+                    target="_blank"
+                  >
+                    {item.name}
+                  </a>
+                )
+              )}
           </span>
         </div>
         {topRight && topRight}

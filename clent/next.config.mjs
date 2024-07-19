@@ -3,6 +3,13 @@ const __dirname = path.resolve();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // output: "standalone",
+  experimental: {
+    scrollRestoration: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
@@ -12,6 +19,8 @@ const nextConfig = {
     };
     return config;
   },
+  // CDN地址
+  assetPrefix: process.env.CDN || "",
   // 设置缓存
   async headers() {
     return [
@@ -29,6 +38,36 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: "/sitemap/index:path*.xml",
+        destination: "/sitemap/index[index].xml",
+      },
+      {
+        source: "/sitemap/:path*",
+        destination: "/sitemap/[index]",
+        has: [
+          {
+            type: "query",
+            key: "index",
+          },
+        ],
+      },
+    ];
+  },
+  images: process.env.CDN
+    ? {
+        remotePatterns: [
+          {
+            protocol: new URL(process.env.CDN).protocol.replace(":", ""), // 获取协议并去掉末尾的冒号
+            hostname: new URL(process.env.CDN).hostname,
+            pathname: "/**",
+          },
+        ],
+        domains: [new URL(process.env.CDN).hostname],
+      }
+    : undefined,
 };
 
 export default nextConfig;

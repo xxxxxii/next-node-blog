@@ -3,11 +3,11 @@
 import { FC, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import { message } from "antd";
-import { propsType } from "@/app/tag/[name]/article/page";
+// import { propsType } from "@/app/tag/[name]/article/page";
 import ArticleList from "@/components/common/ArticleList";
-import getTagArticleLData from "@/request/type/getTagArticleLData";
+// import getTagArticleLData from "@/request/type/getTagArticleLData";
 
-const List: FC<propsType> = ({ data }) => {
+const List: FC<any> = ({ data }) => {
   let page = useRef(1);
   /** 文章总数*/
   let [total, setTotal] = useState(data.article_data.total);
@@ -17,19 +17,19 @@ const List: FC<propsType> = ({ data }) => {
   let name = params.name as string;
 
   function loadMoreData() {
-    getTagArticleLData(page.current, name)
-      .then((res) => {
-        let _list = res.article_data.list;
-        if (page.current == 1) {
-          setList(_list);
-          setTotal(res.article_data.total);
-        } else {
-          setList((currentList) => [...currentList, ..._list]);
-        }
-      })
-      .catch(() => {
-        message.error("请求错误");
-      });
+    // getTagArticleLData(page.current, name)
+    //   .then((res) => {
+    //     let _list = res.article_data.list;
+    //     if (page.current == 1) {
+    //       setList(_list);
+    //       setTotal(res.article_data.total);
+    //     } else {
+    //       setList((currentList) => [...currentList, ..._list]);
+    //     }
+    //   })
+    //   .catch(() => {
+    //     message.error("请求错误");
+    //   });
   }
   return (
     <>

@@ -14,6 +14,7 @@
     "@bytemd/react": "^1.21.0",
     "@emoji-mart/data": "^1.2.1",
     "@emoji-mart/react": "^1.1.1",
+    "@types/js-cookie": "^3.0.6",
     "@types/qs": "^6.9.15",
     "@types/react-highlight-words": "^0.20.0",
     "@types/turndown": "^5.0.4",
@@ -37,6 +38,7 @@
     "toc-helper": "^2.1.1",
     "turndown": "^7.2.0",
     "turndown-plugin-gfm": "^1.0.2",
+    "use-animate-number": "^1.0.5",
     "wangeditor-for-react": "^1.5.6",
     "zustand": "^4.5.4"
   },

@@ -114,9 +114,7 @@ const MarkDownEditor: FC<editorPropsType> = (props) => {
           locale={zhHans}
           value={value}
           onChange={(md) => {
-            let html = marked(md, {
-              headerIds: false,
-            });
+            let html = marked(md, {});
             allowChangeValue.current = false;
             setValue(md);
             startTransition(() => {
@@ -135,7 +133,7 @@ const MarkDownEditor: FC<editorPropsType> = (props) => {
                       props.onSetTheme && props.onSetTheme(id);
                     },
                     props.defaultTheme!,
-                    (styleContent) => setStyleContent(styleContent),
+                    (styleContent) => setStyleContent(styleContent)
                   ),
                 ]
               : []),

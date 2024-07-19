@@ -22,9 +22,11 @@ export async function doExtraStyle({ cache }: DoExtraStyleOptions) {
     const hash = md5.update(css).digest("hex");
 
     const fileName = `${hash.substring(0, 16)}.css`;
+
+    console.log(fileName, "fileName");
     const fullpath = path.join(`.next/css`, fileName);
 
-    if (fs.existsSync(fullpath)) return `/static/antd/${fileName}`;
+    if (fs.existsSync(fullpath)) return `//css/${fileName}`;
 
     fs.writeFileSync(fullpath, css);
 

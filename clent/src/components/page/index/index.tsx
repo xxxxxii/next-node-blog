@@ -13,12 +13,12 @@ interface optionType {
   type?: number | string;
   tag?: number | string;
   follow?: true;
-  sort: sortType;
+  sort: string;
 }
 
 interface propsType {
-  type: typeTreeRsponseType[];
-  article_list: articleListResponseType;
+  type: any;
+  article_list: any;
   children: ReactNode;
 }
 const Home: FC<propsType> = (props) => {
@@ -85,7 +85,7 @@ const Home: FC<propsType> = (props) => {
         <div className="mr-4 w-[calc(100%-256px)] sm:mr-0 sm:w-full">
           <SortSelect
             change={(sort) => {
-              option.current.sort = sort as sortType;
+              option.current.sort = sort;
               page.current = 1;
               loadMoreData();
             }}

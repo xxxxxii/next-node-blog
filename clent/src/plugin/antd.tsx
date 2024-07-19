@@ -27,10 +27,11 @@ const Antd: FC<propsType> = ({ children }) => {
       fileName = await doExtraStyle({
         cache,
       });
+      console.log(fileName, "fileName");
 
       antdFileNameMap[pathname] = fileName;
     }
-
+    return false;
     // return <link rel="stylesheet" href={`${process.env.CDN}${fileName}`} />;
   });
 

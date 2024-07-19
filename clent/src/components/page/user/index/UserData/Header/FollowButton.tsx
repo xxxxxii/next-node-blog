@@ -7,7 +7,7 @@ import type { FollowAttributes } from "@type/model-attribute";
 import useFetch from "@/common/hooks/useFetch";
 import useUserData from "@/store/user/user-data";
 import useUserSignModel from "@/store/user/user-sign-model-state";
-import { follow, unfollow } from "@/request/follow";
+// import { follow, unfollow } from "@/request/follow";
 
 interface propsType {
   bloggerID: FollowAttributes["belong_id"];
@@ -16,26 +16,26 @@ const SwitchButton: FC<propsType> = (props) => {
   let { data, error, refetch } = useFetch(() =>
     axios
       .get<response>(`/follow/state/${props.bloggerID}`)
-      .then((res) => res.data.success),
+      .then((res) => res.data.success)
   );
 
   function followUser() {
-    follow(props.bloggerID, "user")
-      .then(() => {
-        refetch();
-      })
-      .catch(() => {
-        message.error("关注失败");
-      });
+    // follow(props.bloggerID, "user")
+    //   .then(() => {
+    //     refetch();
+    //   })
+    //   .catch(() => {
+    //     message.error("关注失败");
+    //   });
   }
   function unFollowUser() {
-    unfollow(props.bloggerID)
-      .then(() => {
-        refetch();
-      })
-      .catch(() => {
-        message.error("取关失败");
-      });
+    // unfollow(props.bloggerID)
+    //   .then(() => {
+    //     refetch();
+    //   })
+    //   .catch(() => {
+    //     message.error("取关失败");
+    //   });
   }
   return (
     <>

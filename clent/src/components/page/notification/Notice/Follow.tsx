@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { Avatar } from "antd";
-import { noticeFollowListType } from "@/app/notification/[type]/page";
 import dayjs from "@dayjs";
 import NoFollowLink from "@/components/next/NoFollowLink";
 
@@ -13,7 +12,7 @@ function _switch(type: keyof typeof map) {
   let key = Object.keys(map).find((item) => type.includes(item)) as string;
   return map[key as keyof typeof map];
 }
-const ArticleNotice: FC<{ data: noticeFollowListType }> = ({ data }) => {
+const ArticleNotice: FC<{ data: any }> = ({ data }) => {
   let _data = _switch(data.type as any);
 
   return (

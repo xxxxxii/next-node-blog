@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { Avatar } from "antd";
-import { noticeCommentListType } from "@/app/notification/[type]/page";
 import dayjs from "@dayjs";
 import NoFollowLink from "@/components/next/NoFollowLink";
 
 interface propsType {
-  data: noticeCommentListType;
+  data: any;
 }
 function _switch(type: keyof typeof map, reply: boolean) {
   /** 第一个显示的正常评论下的文字，第二个数组显示的是reply下的显示文字*/

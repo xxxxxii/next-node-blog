@@ -30,7 +30,6 @@ const Home = async () => {
           "技术社区,博客,前端开发,WEB",
         ]}
       />
-      <Header />
 
       <Page type={reponse[0]} article_list={reponse[1]}>
         <aside className="w-60 sm:hidden">

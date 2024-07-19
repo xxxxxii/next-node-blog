@@ -10,7 +10,7 @@ interface propsType {
 /** 首页右侧推广*/
 const Advertisement: FC<propsType> = async (props) => {
   // let data = await getAdvertisementList(props.type);
-  let data = null;
+  let data: Array<any> = [];
   return (
     <div className={props.className}>
       {data?.map((item) => (

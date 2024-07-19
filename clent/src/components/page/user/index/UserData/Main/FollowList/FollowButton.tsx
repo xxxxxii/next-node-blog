@@ -3,7 +3,7 @@ import type { FC } from "react";
 import { Button, message } from "antd";
 import useUserData from "@/store/user/user-data";
 import useUserSignModel from "@/store/user/user-sign-model-state";
-import { follow, unfollow } from "@/request/follow";
+// import { follow, unfollow } from "@/request/follow";
 
 interface propsType {
   /** 是否关注了该用户*/
@@ -22,20 +22,20 @@ const FollowButton: FC<propsType> = (props) => {
   }, [props.isFollow]);
 
   function followUser() {
-    follow(props.bloggerID, "user")
-      .then(() => {
-        setIsFollow(true);
-      })
-      .catch(() => {
-        message.error("关注失败");
-      });
+    // follow(props.bloggerID, "user")
+    //   .then(() => {
+    //     setIsFollow(true);
+    //   })
+    //   .catch(() => {
+    //     message.error("关注失败");
+    //   });
   }
   function unFollowUser() {
-    unfollow(props.bloggerID)
-      .then(() => {
-        setIsFollow(false);
-      })
-      .catch(() => {});
+    // unfollow(props.bloggerID)
+    //   .then(() => {
+    //     setIsFollow(false);
+    //   })
+    //   .catch(() => {});
   }
 
   if (!userData) {

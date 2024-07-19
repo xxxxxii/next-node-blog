@@ -28,9 +28,12 @@ const TagForm: FC<PropsType> = (props) => {
   };
 
   //查询并设置类型选择器（belong）
-  let { data } = useFetch(() => {
-    return {};
-  });
+  // let { data } = useFetch(() => {
+  //   return new Promise((rej, resolve) => {
+  //     resolve({ data: [] });
+  //   });
+  // });
+  let data: Array<any> = [];
   // getType("tag");
   let { Option } = Select;
   return (
@@ -77,7 +80,7 @@ const TagForm: FC<PropsType> = (props) => {
         >
           <Select style={{ width: 180 }} loading={!data}>
             {data &&
-              data.map((item) => {
+              data?.map((item) => {
                 return (
                   <Option key={item.id} value={item.id}>
                     {item.name}

@@ -1,4 +1,11 @@
-import { useState } from "react";
+import {
+  AwaitedReactNode,
+  JSXElementConstructor,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+  useState,
+} from "react";
 import { Badge, message } from "antd";
 import classNames from "classnames";
 import useFetch from "@/common/hooks/useFetch";
@@ -10,14 +17,14 @@ const Type = () => {
   let articleData = useUserWriteArticle((s) => s.data);
   let updateData = useUserWriteArticle((s) => s.updateData);
 
-  let { data } = useFetch(
-    () => []
-    // getTag("tree").then((res) => {
-    //   setType(res[0].id);
-    //   return res;
-    // }),
-  );
-
+  // let { data } = useFetch(
+  //   () => []
+  //   // getTag("tree").then((res) => {
+  //   //   setType(res[0].id);
+  //   //   return res;
+  //   // }),
+  // );
+  let data: Array<any> = [];
   return (
     <>
       {/* 类型 */}
@@ -26,7 +33,7 @@ const Type = () => {
           data.map((item, index) => (
             <Badge
               count={item.children?.reduce(
-                (total, _item) =>
+                (total: number, _item: { id: number }) =>
                   articleData.tag.includes(_item.id) ? (total += 1) : total,
                 0
               )}
@@ -53,36 +60,56 @@ const Type = () => {
         {data &&
           data
             .find((item) => item.id == type)
-            ?.children?.map((item, index) => (
-              <div
-                className={classNames([
-                  "!ml-1 h-full !w-1/5 cursor-pointer rounded py-1 text-center text-gray-500 hover:bg-gray-200",
-                  index > 3 && "mt-2",
-                  articleData.tag.includes(item.id)
-                    ? "bg-gray-200"
-                    : "bg-gray-100",
-                ])}
-                key={`article-write-tag-${item.id}`}
-                onClick={() => {
-                  // 先判断是否点击过了
-                  // 点击过了就取消没点过就先判断是否6个了在判断添加和删除
-                  if (articleData.tag.includes(item.id)) {
-                    updateData({
-                      ...articleData.tag,
-                      tag: articleData.tag.filter((_item) => item.id != _item),
-                    });
-                  } else {
-                    if (articleData.tag.length < 6) {
-                      updateData({ tag: [...articleData.tag, item.id] });
+            ?.children?.map(
+              (
+                item: {
+                  id: number;
+                  name:
+                    | string
+                    | number
+                    | bigint
+                    | boolean
+                    | ReactElement<any, string | JSXElementConstructor<any>>
+                    | Iterable<ReactNode>
+                    | ReactPortal
+                    | Promise<AwaitedReactNode>
+                    | null
+                    | undefined;
+                },
+                index: number
+              ) => (
+                <div
+                  className={classNames([
+                    "!ml-1 h-full !w-1/5 cursor-pointer rounded py-1 text-center text-gray-500 hover:bg-gray-200",
+                    index > 3 && "mt-2",
+                    articleData.tag.includes(item.id)
+                      ? "bg-gray-200"
+                      : "bg-gray-100",
+                  ])}
+                  key={`article-write-tag-${item.id}`}
+                  onClick={() => {
+                    // 先判断是否点击过了
+                    // 点击过了就取消没点过就先判断是否6个了在判断添加和删除
+                    if (articleData.tag.includes(item.id)) {
+                      updateData({
+                        ...articleData.tag,
+                        tag: articleData.tag.filter(
+                          (_item) => item.id != _item
+                        ),
+                      });
                     } else {
-                      message.warning("最多选择6个标签");
+                      if (articleData.tag.length < 6) {
+                        updateData({ tag: [...articleData.tag, item.id] });
+                      } else {
+                        message.warning("最多选择6个标签");
+                      }
                     }
-                  }
-                }}
-              >
-                {item.name}
-              </div>
-            ))}
+                  }}
+                >
+                  {item.name}
+                </div>
+              )
+            )}
       </div>
     </>
   );

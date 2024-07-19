@@ -5,7 +5,7 @@ import type { ArticleAttributes } from "@type/model-attribute";
 import FollwoButton from "@/components/page/article/UserData/FollowButton";
 
 interface propsType {
-  data: Pick<ArticleAttributes, "users" | "createdAt" | "pv" | "id">;
+  data: any;
   type: "article" | "problem";
 }
 

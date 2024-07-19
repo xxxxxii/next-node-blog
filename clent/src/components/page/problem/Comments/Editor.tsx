@@ -59,11 +59,7 @@ const Editor: FC<propsType> = (props) => {
         onChange={(e) => {
           setValue(e.target.value);
           startTransition(() => {
-            setContent(
-              marked(e.target.value, {
-                headerIds: false,
-              }),
-            );
+            setContent(marked(e.target.value, {}));
           });
         }}
       />

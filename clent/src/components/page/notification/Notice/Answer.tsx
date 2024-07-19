@@ -1,10 +1,9 @@
 import type { FC } from "react";
 import { Avatar } from "antd";
-import { noticeAnswerListType } from "@/app/notification/[type]/page";
 import dayjs from "@dayjs";
 import NoFollowLink from "@/components/next/NoFollowLink";
 
-const ArticleNotice: FC<{ data: noticeAnswerListType }> = ({ data }) => {
+const ArticleNotice: FC<{ data: any }> = ({ data }) => {
   return (
     <>
       <div className="h-10 w-10">

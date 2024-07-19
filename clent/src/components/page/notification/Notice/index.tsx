@@ -1,9 +1,4 @@
 import type { FC } from "react";
-import type {
-  noticeAnswerListType,
-  noticeCommentListType,
-  noticeFollowListType,
-} from "@/app/notification/[type]/page";
 import AnswerItem from "./Answer";
 import CommentItem from "./Comment";
 import FollowItem from "./Follow";
@@ -13,31 +8,27 @@ type componentsType = "comment" | "follow" | "answer";
 /** 根据通知类型返回对应的显示组件*/
 const Component: FC<{
   type: componentsType;
-  data: noticeCommentListType | noticeAnswerListType | noticeFollowListType;
+  data: any;
 }> = ({ type, data }) => {
   let map = [
     {
       lable: "comment",
-      component: <CommentItem data={data as noticeCommentListType} />,
+      component: <CommentItem data={data as any} />,
     },
     {
       lable: "follow",
-      component: <FollowItem data={data as noticeFollowListType} />,
+      component: <FollowItem data={data as any} />,
     },
     {
       lable: "answer",
-      component: <AnswerItem data={data as noticeAnswerListType} />,
+      component: <AnswerItem data={data as any} />,
     },
   ];
   return map.find((_item) => type.startsWith(_item.lable))
     ?.component as JSX.Element;
 };
 
-type listData = (
-  | noticeCommentListType
-  | noticeAnswerListType
-  | noticeFollowListType
-)[];
+type listData = (any | any | any)[];
 
 /** 对多个通知数据进行指定类型的转换*/
 const Notice: FC<{

@@ -7,36 +7,37 @@ import TocHelper from "toc-helper";
 
 const Catalogue = () => {
   let [isShrink, setIsShrink] = useState(false);
-  let scrollElement = document.documentElement;
   useEffect(() => {
-    const scrollSwitch = () => {
-      let scrollY =
-        document.documentElement.scrollTop || document.body.scrollTop;
-      // 大于600缩回，小于540伸出
-      if (scrollY > 600 && !isShrink) {
-        setIsShrink(true);
-      }
-      if (scrollY < 540 && isShrink) {
-        setIsShrink(false);
-      }
-    };
-    window.addEventListener("scroll", scrollSwitch);
-    return () => {
-      window.removeEventListener("scroll", scrollSwitch);
-    };
+    if (typeof window !== "undefined") {
+      const scrollSwitch = () => {
+        let scrollY =
+          document.documentElement.scrollTop || document.body.scrollTop;
+        // 大于600缩回，小于540伸出
+        if (scrollY > 600 && !isShrink) {
+          setIsShrink(true);
+        }
+        if (scrollY < 540 && isShrink) {
+          setIsShrink(false);
+        }
+      };
+      window.addEventListener("scroll", scrollSwitch);
+      return () => {
+        window.removeEventListener("scroll", scrollSwitch);
+      };
+    }
   }, [isShrink]);
 
   const ref = useRef(null);
   useEffect(() => {
-    // if (ref.current) {
-    new TocHelper(ref.current, [
-      ,
-      {
-        contentSelector: "#md-content",
-        fixedClassName: ".md-fixed",
-      },
-    ]);
-    // }
+    if (ref.current) {
+      new TocHelper(ref.current, [
+        ,
+        {
+          contentSelector: "#md-content",
+          fixedClassName: ".md-fixed",
+        },
+      ]);
+    }
   }, []);
   return (
     <div

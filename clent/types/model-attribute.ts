@@ -8,7 +8,6 @@ export interface TagAttributes {
   indexes: number;
 }
 
-
 export interface ArticleAttributes {
   id: number;
   title: string;
@@ -34,6 +33,7 @@ export interface ArticleAttributes {
   like_count: number;
   like_state: number;
   theme_id: number;
+  name: string;
 }
 export interface UserAttributes {
   id: number;

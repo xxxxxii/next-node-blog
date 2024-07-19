@@ -84,7 +84,7 @@ const Editor: FC<propsType> = (props) => {
     };
   }, [value, editorOption]); // 将 value
 
-  let [picture, setPicture] = useState<null>(null);
+  let [picture, setPicture] = useState<any>(null);
   let [pictureUploading, setPictureUploading] = useState<
     false | [number, number]
   >(false);
@@ -125,7 +125,7 @@ const Editor: FC<propsType> = (props) => {
     axios
       .post("/comment", {
         belong_id: articleID,
-        content: marked.parse(value, { headerIds: false }),
+        content: marked.parse(value),
         comment_pics: picture?.file_name || null,
         reply: props.reply || null,
         type: "article",
@@ -169,7 +169,7 @@ const Editor: FC<propsType> = (props) => {
               ])}
             >
               <TextArea
-                ref={(input) => (inputDOM.current = input)}
+                ref={(input: any) => (inputDOM.current = input)}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 placeholder="输入评论"
