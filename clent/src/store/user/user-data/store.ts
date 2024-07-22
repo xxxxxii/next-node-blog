@@ -2,8 +2,10 @@
 
 import axios from "@axios";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export interface UserInfoDataType {
+  status: string;
   avatar_url: string;
   id: number;
   name: string;
@@ -24,7 +26,7 @@ export type UserDataStore = UserInfoType & UserDataActions;
 export const defaultInitState: UserInfoType = { data: null };
 
 export const createUserDataStore = (
-  initState: UserInfoType = defaultInitState,
+  initState: UserInfoType = defaultInitState
 ) => {
   return create<UserDataStore>((set) => ({
     ...initState,
@@ -37,5 +39,8 @@ export const createUserDataStore = (
         .catch(() => set({ data: null }));
     },
     setData: (data: UserInfoDataType | null) => set({ data: data }),
+    persist: {
+      name: "token",
+    },
   }));
 };

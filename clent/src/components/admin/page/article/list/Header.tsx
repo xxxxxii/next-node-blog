@@ -31,18 +31,21 @@ const Header = () => {
         </Form.Item>
 
         <Form.List name="sort">
-          {(fields) =>
-            fields.map((field, index) => (
-              <Form.Item {...field} label={index == 0 ? "排序" : ""}>
+          {(fields: any) =>
+            fields?.map((field: any, index: number) => (
+              <Form.Item
+                {...field}
+                label={index == 0 ? "排序" : ""}
+                key={index}
+              >
                 <Select
                   value={searchOption.data.sort[index]}
                   style={{ width: "120px" }}
                 >
                   {index == 0 ? (
                     <>
-                      <Option value="create_time">发布时间</Option>
-                      <Option value="update_time">更新时间</Option>
-                      <Option value="view_count">阅读数</Option>
+                      <Option value="createdAt">发布时间</Option>
+                      <Option value="pv">阅读数</Option>
                     </>
                   ) : (
                     <>

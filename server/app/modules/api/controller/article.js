@@ -117,6 +117,10 @@ class ArticleController {
       const sort = req.query.sort;
       const pageSize = req.query.pageSize || 10;
       const data = await article.list(cur, pageSize, cid, sort);
+
+      for (let i = 0; i < data.list.length - 1; i++) {
+        data.list[i]["user"] = await sysUser.detail(data.list[i]?.user_id);
+      }
       // data.list.forEach((ele) => {
       //   ele.updatedAt = dayjs(ele.updatedAt).format("YYYY-MM-DD HH:mm:ss");
       // });

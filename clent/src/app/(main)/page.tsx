@@ -11,6 +11,7 @@ import Ranking from "@/components/page/index/Ranking";
 // import getTypeTreeIndex from "@/request/type/type-tree-index";
 import { getPosts } from "@/api/module/posts";
 import { getTag } from "@/api/module/tag";
+import AntBase from "@/components/AntBase";
 
 const Home = async () => {
   let reponse = await Promise.all([
@@ -22,25 +23,27 @@ const Home = async () => {
 
   return (
     <>
-      <Head
-        title={`${process.env.NEXT_PUBLIC_SITE_NAME}-技术社区`}
-        description={`${process.env.NEXT_PUBLIC_SITE_NAME}是面向中文开发者的技术内容分享与交流平台。我们通过技术文章、问答服务，打造一个激发开发者创作灵感，激励开发者沉淀分享，陪伴开发者成长的综合类技术社区。`}
-        keywords={[
-          process.env.NEXT_PUBLIC_SITE_NAME,
-          "技术社区,博客,前端开发,WEB",
-        ]}
-      />
-
-      <Page type={reponse[0]} article_list={reponse[1]}>
-        <aside className="w-60 sm:hidden">
-          <Repository />
-          <Advertisement type="index" />
-          <AdSense />
-          <Ranking />
-          <Footer />
-        </aside>
-      </Page>
-      <BackTop />
+      <AntBase>
+        <Head
+          title={`${process.env.NEXT_PUBLIC_SITE_NAME}-技术社区`}
+          description={`${process.env.NEXT_PUBLIC_SITE_NAME}是面向中文开发者的技术内容分享与交流平台。我们通过技术文章、问答服务，打造一个激发开发者创作灵感，激励开发者沉淀分享，陪伴开发者成长的综合类技术社区。`}
+          keywords={[
+            process.env.NEXT_PUBLIC_SITE_NAME,
+            "技术社区,博客,前端开发,WEB",
+          ]}
+        />
+        <Header />
+        <Page type={reponse[0]} article_list={reponse[1]}>
+          <aside className="w-60 sm:hidden">
+            <Repository />
+            <Advertisement type="index" />
+            <AdSense />
+            <Ranking />
+            <Footer />
+          </aside>
+        </Page>
+        <BackTop />
+      </AntBase>
     </>
   );
 };

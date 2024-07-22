@@ -1,0 +1,82 @@
+"use client";
+
+import { memo, useEffect, useRef, useState } from "react";
+import { Spin, message } from "antd";
+import axios from "@axios";
+import AdminLayout from "@/layout/Admin/Base";
+import Header from "@/components/admin/page/article/list/Header";
+import Table from "@/components/admin/page/article/list/Table";
+import useAdminArticleList from "@/store/admin/admin-article-list";
+import useAdminArticleSearch from "@/store/admin/admin-search-option";
+import useAdminTableOption from "@/store/admin/admin-table-option";
+import { getPosts } from "@/api/module/posts";
+
+const ArticleList = memo(() => {
+  /** 设置文章数据*/
+  let setArticleList = useAdminArticleList((s) => s.setData);
+  /** 获取表格配置的page和page_size*/
+  let tableOption = useAdminTableOption((s) => s.data);
+  /** 顶部Header中的搜索配置*/
+  let searchOption = useAdminArticleSearch((s) => s.data);
+  /** 是否加载中*/
+  const [isLoading, setIsLoading] = useState(false);
+
+  let cancel = useRef<() => void>();
+  useEffect(() => {
+    setIsLoading(true);
+    cancel.current && cancel.current();
+
+    console.log(searchOption);
+    getPosts(
+      {
+        pageSize: tableOption.page_size,
+        ...searchOption,
+        sort: searchOption["sort"][0],
+      },
+      (cancelFunction) => {
+        cancel.current = cancelFunction;
+      }
+    )
+      .then((res: any) => {
+        setArticleList({
+          list: res.list,
+          total_count: res.count,
+        });
+      })
+      .catch(() => {
+        message.error("请求错误");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+    return;
+    axios
+      .get(`/article/page/${tableOption.page}`, {
+        params: { page_size: tableOption.page_size, ...searchOption },
+        signal: controller.signal,
+      })
+      .then((res) => {
+        setArticleList({
+          list: res.data.data.list,
+          total_count: res.data.data.total_count,
+        });
+      })
+      .catch(() => {
+        message.error("请求错误");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [tableOption, searchOption]);
+  return (
+    <>
+      <AdminLayout>
+        <Header />
+        <Spin tip="Loading..." spinning={isLoading}>
+          <Table />
+        </Spin>
+      </AdminLayout>
+    </>
+  );
+});
+export default ArticleList;

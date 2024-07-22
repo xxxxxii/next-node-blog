@@ -213,6 +213,7 @@ class ArticleService {
         list = await knex
           .select([
             "id",
+            "user_id",
             "title",
             "createdAt",
             "description",
@@ -221,6 +222,7 @@ class ArticleService {
             "status",
             "img",
             "likes",
+            "tag_id",
           ])
           .from(ArticleService.model)
           .whereILike("tag_id", `%,${id},%`)
@@ -232,6 +234,7 @@ class ArticleService {
         list = await knex
           .select([
             "id",
+            "user_id",
             "title",
             "attr",
             "description",
@@ -239,6 +242,7 @@ class ArticleService {
             "createdAt",
             "status",
             "likes",
+            "tag_id",
           ])
           .from(ArticleService.model)
           .limit(pageSize)

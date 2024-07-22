@@ -15,6 +15,18 @@ import dayjs from "@dayjs";
 import classNames from "classnames";
 import useAdminArticleList from "@/store/admin/admin-article-list";
 import useAdminTableOption from "@/store/admin/admin-table-option";
+import { getTag } from "@/api/module/tag";
+
+let tagList: Array<any> = [];
+let cList: Array<any> = [];
+getTag().then((res) => {
+  let tempList: Array<any> = [];
+  res?.data?.data?.map((item: any) => {
+    tempList.push(...item.tags);
+  });
+  tagList = tempList;
+  cList = res?.data?.data;
+});
 
 const TableCom = () => {
   /** 文章列表数据 */
@@ -46,16 +58,17 @@ const TableCom = () => {
     },
     {
       title: "发表者",
-      dataIndex: "author_data",
-      render: (author_data: any) => {
+      dataIndex: "user",
+      render: (user: any) => {
+        console.log(user, "author_data");
         return (
-          <Link href={`/admin/user/${author_data.id}`}>
+          <Link href={`/admin/user/${user?.id}`}>
             <Avatar
-              src={author_data.avatar_url}
+              src={user?.avatar_url}
               style={{ verticalAlign: "middle" }}
               size="large"
             >
-              {author_data.name.substring(0, 1).toLocaleUpperCase()}
+              {user?.name.substring(0, 1).toLocaleUpperCase()}
             </Avatar>
           </Link>
         );
@@ -64,7 +77,7 @@ const TableCom = () => {
     },
     {
       title: "阅读量",
-      dataIndex: "view_count",
+      dataIndex: "pv",
       render: (view_count: any) => {
         return (
           <>
@@ -72,8 +85,8 @@ const TableCom = () => {
               {view_count < 1000
                 ? view_count
                 : view_count > 1000000
-                  ? `${Math.ceil(view_count / 1000000)}M`
-                  : `${Math.ceil(view_count / 1000)}K`}
+                ? `${Math.ceil(view_count / 1000000)}M`
+                : `${Math.ceil(view_count / 1000)}K`}
             </Tooltip>
           </>
         );
@@ -82,11 +95,20 @@ const TableCom = () => {
     },
     {
       title: "标签",
-      dataIndex: "tag",
+      dataIndex: "tag_id",
       render: (tags: any, record: any, index: any) => {
+        let tagIds = tags.split(",");
+        tagIds = tagIds.filter((item: string) => item !== "");
+
+        let cTag: Array<any> = [];
+        tagIds.map((item: any) => {
+          let tempList = tagList?.filter((ic) => item == ic?.id);
+          cTag.push(...tempList);
+        });
+
         return (
           <div className="flex flex-wrap">
-            {tags.map((item: any, index: number) => {
+            {cTag?.map((item: any, index: number) => {
               return (
                 <div
                   className={classNames([
@@ -98,11 +120,11 @@ const TableCom = () => {
                   {item?.icon_url && (
                     <img
                       className="mr-1 h-4 w-4"
-                      src={item.icon_url}
-                      alt={item.name}
+                      src={item?.icon_url}
+                      alt={item?.name}
                     />
                   )}
-                  <span className="text-sm">{item.name}</span>
+                  <span className="text-sm">{item?.name}</span>
                 </div>
               );
             })}
