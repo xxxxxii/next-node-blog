@@ -38,42 +38,40 @@ const ArticleItem: FC<propsType> = ({
     <li className={classNames("list-none px-5 pt-3", className)}>
       <div className="flex items-center justify-between">
         <div>
-          <span className="text-[#4e5969]">{data.name}</span>
+          <span className="text-[#4e5969]">{data?.user?.username}</span>
           <span className={classNames(["text-[#86909c]"])}>
             <span className={classNames([style.adorn])}>
               {dayjs(data.createdAt).fromNow().replace(" ", "")}
             </span>
           </span>
           <span>
-            {data.tag
-              ?.slice(0, 2)
-              .map(
-                (
-                  item: {
-                    name:
-                      | string
-                      | number
-                      | bigint
-                      | boolean
-                      | ReactElement<any, string | JSXElementConstructor<any>>
-                      | Iterable<ReactNode>
-                      | ReactPortal
-                      | Promise<AwaitedReactNode>
-                      | null
-                      | undefined;
-                  },
-                  index: any
-                ) => (
-                  <a
-                    className={classNames(["text-[#86909c]", style.tag])}
-                    key={`tag${data.id}${item.name}${index}`}
-                    href={`/tag/${item.name}/article`}
-                    target="_blank"
-                  >
-                    {item.name}
-                  </a>
-                )
-              )}
+            {data.tag?.slice(0, 2).map(
+              (
+                item: {
+                  name:
+                    | string
+                    | number
+                    | bigint
+                    | boolean
+                    | ReactElement<any, string | JSXElementConstructor<any>>
+                    | Iterable<ReactNode>
+                    | ReactPortal
+                    | Promise<AwaitedReactNode>
+                    | null
+                    | undefined;
+                },
+                index: any
+              ) => (
+                <a
+                  className={classNames(["text-[#86909c]", style.tag])}
+                  key={`tag${data.id}${item.name}${index}`}
+                  href={`/tag/${item.name}/article`}
+                  target="_blank"
+                >
+                  {item.name}
+                </a>
+              )
+            )}
           </span>
         </div>
         {topRight && topRight}
