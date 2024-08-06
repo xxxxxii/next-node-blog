@@ -1,13 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import front from "@/layouts/front.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "home",
-      component: HomeView,
+      name: "layout",
+      component: front,
+      redirect: "front",
+      children: [
+        {
+          path: "/front",
+          name: "front",
+          component: () => import("@/views/front/home/index.vue"),
+        },
+      ],
     },
     {
       path: "/about",

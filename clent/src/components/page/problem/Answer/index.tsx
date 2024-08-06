@@ -85,10 +85,10 @@ const Answer: FC = () => {
     <>
       <div className="mt-4 bg-white">
         <div className="bg-white p-4 pb-0 text-lg font-bold">
-          {data.answer_list.length}个回答
+          {data.answer.length}个回答
         </div>
         {/* 单个回答 */}
-        {data.answer_list.map((item, index) => (
+        {data.answer.map((item, index) => (
           <div
             key={item.id}
             className={classNames([
@@ -99,13 +99,13 @@ const Answer: FC = () => {
           >
             <div className="flex">
               <img
-                src={item.author_data.avatar_url}
+                src={item.answer?.avatar_url}
                 alt="avatar"
                 className="h-9 w-9 rounded-full"
               />
               <div className="ml-3">
-                <div className="font-bold">{item.author_data.name}</div>
-                <div>{dayjs(item.create_time).format("YYYY-MM-DD")}</div>
+                <div className="font-bold">{item.answer?.name}</div>
+                <div>{dayjs(item?.create_time).format("YYYY-MM-DD")}</div>
               </div>
             </div>
             <div
@@ -135,13 +135,13 @@ const Answer: FC = () => {
                   className="cursor-pointer"
                   onClick={() => {
                     setAnswerReplyShrinkIndex((value) =>
-                      value == index ? -1 : index,
+                      value == index ? -1 : index
                     );
                   }}
                 >
                   {answerReplyShrinkIndex == index ? "收起" : "回复"}
                 </div>
-                {userData?.id == item.author &&
+                {userData?.id == item.user &&
                   // 如果已经采纳，就禁止该答案
                   (data.answer_id == item.id ? (
                     <Tooltip placement="top" title={"被采纳的答案无法删除"}>
@@ -173,7 +173,7 @@ const Answer: FC = () => {
                 <Comments
                   type="answer"
                   belong_id={item.id}
-                  data={item.comment_list}
+                  data={item?.comment || []}
                 />
               </Suspense>
             </div>
@@ -186,21 +186,21 @@ const Answer: FC = () => {
                 "-left-20",
               ])}
               onClick={
-                !userData || userData.id == item.author
+                !userData || userData.id == item.user
                   ? undefined
                   : item.like_data.like_state
-                    ? () => unLike(item.id)
-                    : () => like(item.id)
+                  ? () => unLike(item.id)
+                  : () => like(item.id)
               }
             >
               <Badge
-                count={item.like_data.like_count}
+                count={item?.like_data?.like_count}
                 color="#adb1b8"
                 offset={[10, -10]}
               >
                 <Image
                   src={
-                    item.like_data.like_state
+                    item?.like_data?.like_state
                       ? "/icon/client/likes-fill.png"
                       : "/icon/client/likes.png"
                   }

@@ -4,12 +4,6 @@ import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <a-button>2132</a-button>
-    </div>
-  </header>
-
   <RouterView />
 </template>
 

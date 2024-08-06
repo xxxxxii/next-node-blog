@@ -67,7 +67,7 @@ const Editor: FC<propsType> = (props) => {
   let { data: answerData, refetch } = useFetch(() =>
     axios
       .get(`/answer`, { params: { problem_id: id } })
-      .then((res) => res.data.data),
+      .then((res) => res.data.data)
   );
 
   return (
@@ -148,7 +148,7 @@ const Editor: FC<propsType> = (props) => {
               }
             }}
           >
-            {data.answer_list.some((item) => item.author == userData?.id)
+            {data.answer.some((item) => item?.author == userData?.id)
               ? "修改答案"
               : "撰写回答"}
           </Button>

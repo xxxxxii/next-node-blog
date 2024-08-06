@@ -17,7 +17,7 @@ const ArticleUserData: FC<propsType> = ({ data, type }) => {
         <div className="flex items-center">
           <Link href={`/user/${data?.users?.id}`}>
             <img
-              src={data?.users?.avatar_url}
+              src={data?.user?.avatar_url}
               alt={`作者${data?.users?.username}头像`}
               className="h-[30px] w-[30px] cursor-pointer rounded-full"
             />

@@ -6,7 +6,7 @@ import type { childrenPropsType } from "./Item";
 
 export type dataItemPropsType = Pick<
   ProblemAttributes,
-  "id" | "answer_count" | "view_count" | "title" | "tag" | "answer_id"
+  "id" | "answer_count" | "view_count" | "title" | "tagList" | "answer_id"
 >;
 const List: FC<
   {

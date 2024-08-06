@@ -61,6 +61,9 @@ module.exports = (opt) => {
   router.get("/article/delete", auth(), controller.article.delete);
   router.post("/article/update", auth(), controller.article.update);
 
+  // 问答
+  router.get("/problem/list", controller.problem.list);
+
   //上传
   router.post("/upload", auth(), upload.any(), controller.article.upload);
 

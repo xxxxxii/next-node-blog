@@ -19,14 +19,14 @@ const Item: FC<dataItemPropsType & childrenPropsType> = (props) => {
         <div
           className={classNames([
             "flex h-12 w-12 flex-col items-center rounded",
-            props.answer_count
+            props.answer
               ? props.answer_id
                 ? "bg-blue-600 text-white"
                 : "border border-solid border-blue-600 text-blue-600"
               : "text-gray-400",
           ])}
         >
-          <div className="truncate">{props.answer_count}</div>
+          <div className="truncate">{props.answer.length}</div>
           <div>{props.answer_id ? "解决" : "回答"}</div>
         </div>
         <div className="ml-2 flex h-12 w-12 flex-col items-center rounded text-orange-800">
@@ -45,7 +45,7 @@ const Item: FC<dataItemPropsType & childrenPropsType> = (props) => {
             {props.topRight && props.topRight(props.id)}
           </div>
           <div className="mt-1 flex items-center">
-            {props.tag.map((tag, _index) => (
+            {props.tagList.map((tag, _index) => (
               <Link
                 href={`/search?tag=${tag.name}`}
                 key={`problem${props.id}${tag.name}`}

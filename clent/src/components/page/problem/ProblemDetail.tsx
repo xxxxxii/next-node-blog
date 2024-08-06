@@ -20,12 +20,13 @@ import style from "@/styles/content.module.scss";
 
 /** 问答页面数据context*/
 export const Context = createContext<{ data: problemType; reload: Function }>(
-  {} as any,
+  {} as any
 );
 const ProblemDetail: FC<{ data: any }> = ({ data: _data }) => {
   let params = useParams();
   let id = params.id as string;
   const [data, setData] = useState(_data);
+  console.log(data, "data");
   const [problemReplyShrink, setProblemReplyShrink] = useState(false);
   let userData = useUserData((s) => s.data);
 
@@ -64,7 +65,9 @@ const ProblemDetail: FC<{ data: any }> = ({ data: _data }) => {
               dangerouslySetInnerHTML={{ __html: data.content }}
             ></div>
             <div className="my-2">
-              <ToolBar />
+              {
+                // <ToolBar />
+              }
             </div>
             {/* 对问题的回复 */}
             <div className="flex cursor-pointer select-none items-center justify-between text-gray-500">
@@ -102,11 +105,11 @@ const ProblemDetail: FC<{ data: any }> = ({ data: _data }) => {
             <Comments
               type="problem"
               belong_id={+id}
-              data={data.comment_list}
+              data={data?.comment_list || []}
               className="mt-2"
             />
           </div>
-          {!!data.answer_list.length && <Answer />}
+          {!!data.answer.length && <Answer />}
           {userData?.id != data.author && <Editor onSuccess={reload} />}
         </Context.Provider>
       ) : (

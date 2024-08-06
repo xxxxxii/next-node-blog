@@ -99,9 +99,10 @@ export interface NoticeAttributes {
 export interface ProblemAttributes {
   id: number;
   title: string;
-  tag: { name: string }[];
+  tagList: { name: string }[];
   /** 答案数量*/
   answer_count: number;
+  answer: object[];
   content: string;
   language: string[] | null;
   author: number;
